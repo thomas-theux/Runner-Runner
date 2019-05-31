@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlatformSpawner : MonoBehaviour {
 
     public GameObject PlatformGO;
+    public GameObject StartGO;
+    public GameObject FinishGO;
+
     private GameObject levelGround;
     private GameObject platformContainer;
 
@@ -12,7 +15,7 @@ public class PlatformSpawner : MonoBehaviour {
     private float levelPadding = 5.0f;
 
 
-    private void Awake() {
+    public void SpawnPlatforms() {
         levelGround = GameObject.Find("Level Ground");
         platformContainer = GameObject.Find("Platform Container");
 
@@ -28,6 +31,19 @@ public class PlatformSpawner : MonoBehaviour {
         float maxX = 0 + levelX / 2 - levelPadding; // +5
         float minZ = 0 - levelZ / 2 + levelPadding; // -45
         float maxZ = 0 + levelZ / 2 - levelPadding; // +45
+
+
+        // Spawn start and finish platforms
+        float startFinishZ = levelZ / 2 - levelPadding;
+
+        GameObject newStart = Instantiate(StartGO);
+        newStart.transform.parent = platformContainer.transform;
+        newStart.transform.localPosition = new Vector3(0, newStart.transform.position.y, -startFinishZ);
+
+        GameObject newFinish = Instantiate(FinishGO);
+        newFinish.transform.parent = platformContainer.transform;
+        newFinish.transform.localPosition = new Vector3(0, newFinish.transform.position.y, startFinishZ);
+
 
         for (int i = 0; i < spawnAmount; i++) {
             float rndX = groundX + Random.Range(minX, maxX);

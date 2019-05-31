@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour {
 	public Vector3 isoOffset;
 
 
-    private void Awake() {
+    public void RootParent() {
         this.target = this.transform.parent.transform;
         this.transform.parent = null;
     }
