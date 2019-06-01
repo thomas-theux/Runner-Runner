@@ -708,17 +708,19 @@ namespace ECM.Controllers
 
         public virtual void Update()
         {
-            // Handle input
+            // OWN CODE
+            if (!PlayerSheetScript.isDead) {
+                // Handle input
+                HandleInput();
 
-            HandleInput();
+                // Update character rotation
 
-            // Update character rotation
+                UpdateRotation();
 
-            UpdateRotation();
+                // Perform character animation
 
-            // Perform character animation
-
-            Animate();
+                Animate();
+            }
         }
 
         #endregion

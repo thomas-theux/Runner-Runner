@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformDestroyer : MonoBehaviour {
+public class KillingFloor : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Platform") {
-            Destroy(other.gameObject);
+        if (other.tag == "Character") {
+            other.GetComponent<CharacterLifeHandler>().KillCharacter();
         }
     }
 
