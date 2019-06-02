@@ -10,16 +10,19 @@ public class GameManager : MonoBehaviour {
     private GamepadManager gamepadManagerScript;
     private PlatformSpawner platformSpawnerScript;
     private CharacterSpawner characterSpawnerScript;
+    private TimeManager timeManagerScript;
 
 
     private void Awake() {
         gamepadManagerScript = GetComponent<GamepadManager>();
         platformSpawnerScript = GetComponent<PlatformSpawner>();
         characterSpawnerScript = GetComponent<CharacterSpawner>();
+        timeManagerScript = GetComponent<TimeManager>();
 
         gamepadManagerScript.InitializeGamepads();
         platformSpawnerScript.SpawnPlatforms();
         characterSpawnerScript.SpawnCharacters();
+        timeManagerScript.StartLevelTimer();
     }
 
 }
