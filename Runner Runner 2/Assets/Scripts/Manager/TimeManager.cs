@@ -82,4 +82,12 @@ public class TimeManager : MonoBehaviour {
         }
     }
 
+
+    public static void RunEnds(GameObject raceWinner) {
+        TimerIndex = 0;
+
+        int winnerID = raceWinner.GetComponent<PlayerSheet>().playerID;
+        print("Player " + winnerID + " wins!");
+    }
+
 }
