@@ -34,10 +34,11 @@ public class CharacterLifeHandler : MonoBehaviour {
     private IEnumerator RespawnDelay() {
         yield return new WaitForSeconds(respawnDelayTime);
 
-        print("respawn");
-        this.transform.position = spawnGO.transform.position;
-        this.playerSheetScript.isDead = false;
-        this.rb.isKinematic = false;
-        this.characterModel.SetActive(true);
+        if (TimeManager.TimerIndex > 0) {
+            this.transform.position = spawnGO.transform.position;
+            this.playerSheetScript.isDead = false;
+            this.rb.isKinematic = false;
+            this.characterModel.SetActive(true);
+        }
     }
 }

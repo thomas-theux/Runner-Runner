@@ -6,17 +6,17 @@ namespace ECM.Components
 {
     /// <summary>
     /// Character Movement.
-    /// 
+    ///
     /// 'CharacterMovement' is the core of the ECM system and is responsible to perform
     /// all the heavy work to move a character (a.k.a. Character motor),
     /// such as apply forces, impulses, constraints, platforms interaction, etc.
-    /// 
+    ///
     /// This is analogous to the Unity's character controller, but unlike the Unity character controller,
     /// this make use of Rigidbody physics.
-    /// 
+    ///
     /// The controller (eg: 'BaseCharacterController') determines how the Character should be moved,
     /// such as in response from user input, AI, animation, etc.
-    /// and feed this information to the 'CharacterMovement' component, which perform the movement. 
+    /// and feed this information to the 'CharacterMovement' component, which perform the movement.
     /// </summary>
 
     public sealed class CharacterMovement : MonoBehaviour
@@ -72,7 +72,7 @@ namespace ECM.Components
         #endregion
 
         #region FIELDS
-        
+
         private Coroutine _lateFixedUpdateCoroutine;
 
         private Rigidbody _rigidbody;
@@ -162,7 +162,7 @@ namespace ECM.Components
         }
 
         /// <summary>
-        /// The maximum angle (in degrees) the slope needs to be before the character starts to slide. 
+        /// The maximum angle (in degrees) the slope needs to be before the character starts to slide.
         /// </summary>
 
         public float slopeLimit
@@ -240,7 +240,7 @@ namespace ECM.Components
 
         /// <summary>
         /// The real surface normal.
-        /// 
+        ///
         /// This is different from groundNormal, because when SphereCast contacts the edge of a collider
         /// (rather than a face directly on) the hit.normal that is returned is the interpolation of the two normals
         /// of the faces that are joined to that edge.
@@ -671,7 +671,7 @@ namespace ECM.Components
             else
             {
                 // Flatten normal on invalid 'ground' to prevent climbing it
-                
+
                 _normal = Vector3.Cross(Vector3.Cross(up, groundDetection.groundNormal), up).normalized;
             }
 
@@ -701,7 +701,7 @@ namespace ECM.Components
         /// Sweep towards rigidbody's velocity looking for 'ground',
         /// if find valid 'ground', adjust rigidbody's velocity to prevent 'ground' penetration.
         /// </summary>
-        
+
         private void PreventGroundPenetration()
         {
             // If on ground, return
@@ -841,7 +841,7 @@ namespace ECM.Components
                 if (useGravity)
                     velocity += Vector3.down * (gravity * Time.deltaTime);
             }
-            
+
             // If moving towards a step,
             // prevent too steep velocities, anything above 75 degrees will be dampened
 
@@ -939,12 +939,12 @@ namespace ECM.Components
         /// <summary>
         /// Perform an accelerated friction based movement when in air (or invalid ground).
         /// </summary>
-        
+
         private void ApplyAirMovement(Vector3 desiredVelocity, float maxDesiredSpeed, float acceleration,
             float deceleration, float friction, float brakingFriction, bool onlyLateral = true)
         {
             // If onlyLateral, discards any vertical velocity (leaves rigidbody's vertical velocity unaffected)
-            
+
             var up = Vector3.up;
             var v = onlyLateral ? Vector3.ProjectOnPlane(velocity, up) : velocity;
 
@@ -1101,14 +1101,14 @@ namespace ECM.Components
         /// <summary>
         /// Performs character's movement. Causes an instant velocity change to the rigidbody, ignoring its mass.
         /// If useGravity == true will apply custom gravity.
-        /// 
+        ///
         /// Must be called in FixedUpdate.
-        /// 
+        ///
         /// </summary>
         /// <param name="desiredVelocity">Target velocity vector.</param>
         /// <param name="maxDesiredSpeed">Target desired speed.</param>
         /// <param name="onlyLateral">Should velocity along the y-axis be ignored?</param>
-        
+
         public void Move(Vector3 desiredVelocity, float maxDesiredSpeed, bool onlyLateral = true)
         {
             // Perform ground detection
@@ -1134,13 +1134,13 @@ namespace ECM.Components
 
             PreventGroundPenetration();
         }
-        
+
         /// <summary>
         /// Perform character's movement.
         /// If useGravity == true will apply custom gravity.
-        /// 
+        ///
         /// Must be called in FixedUpdate.
-        /// 
+        ///
         /// </summary>
         /// <param name="desiredVelocity">Target velocity vector.</param>
         /// <param name="maxDesiredSpeed">Target desired speed.</param>
@@ -1149,7 +1149,7 @@ namespace ECM.Components
         /// <param name="friction">Friction coefficient to be applied when moving.</param>
         /// <param name="brakingFriction">Friction coefficient to be applied when braking.</param>
         /// <param name="onlyLateral">Should velocity along the y-axis be ignored?</param>
-        
+
         public void Move(Vector3 desiredVelocity, float maxDesiredSpeed, float acceleration, float deceleration,
             float friction, float brakingFriction, bool onlyLateral = true)
         {
@@ -1180,7 +1180,7 @@ namespace ECM.Components
         /// <summary>
         /// When grounded, modify characters velocity to mantain 'ground'.
         /// </summary>
-        
+
         private void SnapToGround()
         {
             // If distance to 'ground' is ~small, return
@@ -1268,7 +1268,7 @@ namespace ECM.Components
 
             probingRotation *= yawRotation;
         }
-        
+
         /// <summary>
         /// Coroutine used to simulate a LateFixedUpdate method.
         /// </summary>
@@ -1276,7 +1276,7 @@ namespace ECM.Components
         private IEnumerator LateFixedUpdate()
         {
             var waitTime = new WaitForFixedUpdate();
-            
+
             while (true)
             {
                 yield return waitTime;
@@ -1289,7 +1289,7 @@ namespace ECM.Components
                 OverlapRecovery(ref p, q);
 
                 // Attemp to snap to a moving platform (if any)
-                
+
                 if (isOnGround && isOnPlatform)
                     SnapToPlatform(ref p, ref q);
 
@@ -1298,7 +1298,7 @@ namespace ECM.Components
                 _rigidbody.MovePosition(p);
                 _rigidbody.MoveRotation(q);
             }
-            
+
             // ReSharper disable once IteratorNeverReturns
         }
 
@@ -1352,7 +1352,7 @@ namespace ECM.Components
 
                 return;
             }
-            
+
             _rigidbody.useGravity = false;
             _rigidbody.isKinematic = false;
             _rigidbody.freezeRotation = true;
@@ -1384,6 +1384,23 @@ namespace ECM.Components
                     "Please add a Frictionless 'PhysicMaterial' to '{0}' game object.",
                     name));
         }
+
+
+        // OWN CODE
+        private void Update() {
+            if (TimeManager.TimerIndex == 0) {
+                if (useGravity) {
+                    // print("OFF");
+                    useGravity = false;
+                }
+            } else {
+                if (!useGravity) {
+                    // print("turn on");
+                    useGravity = true;
+                }
+            }
+        }
+
 
         private void OnEnable()
         {

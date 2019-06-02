@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour {
 
-    public static int CurrentTimer = 0;
+    private float initialDelay = 1.0f;
+    private float initialCountdownMultiplier = 1.0f;
+    private float additionalTime = 0.9f;
 
-    // public static bool StartLevel = false;
-    // public static bool StartRun = false;
-    // public static bool EndRun = false;
-
-    public static float CurrentTime = 0;
+    // 0 = game didn't start yet or is already finished
+    // 1 = level start countdown
+    // 2 = level started
+    // 3 = last seconds are counting down
+    public static float CurrentTime;
+    public static int TimerIndex = 0;
 
     private float levelCountdown;
     private float levelDuration;
@@ -18,35 +21,44 @@ public class TimeManager : MonoBehaviour {
 
 
     public void StartLevelTimer() {
-        CurrentTimer = 1;
+        levelCountdown = SettingsManager.LevelCountdown + additionalTime;
+        levelDuration = SettingsManager.LevelDuration + additionalTime;
+        lastSeconds = SettingsManager.LastSeconds + additionalTime;
 
-        levelCountdown = SettingsManager.LevelCountdown;
-        levelDuration = SettingsManager.LevelDuration;
-        lastSeconds = SettingsManager.LastSeconds;
+        StartCoroutine(LevelStartDelay());
+    }
+
+
+    private IEnumerator LevelStartDelay() {
+        yield return new WaitForSeconds(initialDelay);
+
+        TimerIndex = 1;
     }
 
 
     private void Update() {
-        if (CurrentTimer == 1) {
+        if (TimerIndex == 1) {
             LevelCountdown();
         }
 
-        if (CurrentTimer == 2) {
+        if (TimerIndex == 2) {
             LevelDuration();
         }
 
-        if (CurrentTimer == 3) {
+        if (TimerIndex == 3) {
             LastSeconds();
         }
+
+        // print(TimerIndex);
     }
 
 
     private void LevelCountdown() {
-        levelCountdown -= Time.deltaTime;
+        levelCountdown -= Time.deltaTime * initialCountdownMultiplier;
         CurrentTime = levelCountdown;
 
-        if (levelCountdown <= 0.5f) {
-            CurrentTimer = 2;
+        if (levelCountdown <= 1.0f) {
+            TimerIndex = 2;
         }
     }
 
@@ -55,8 +67,8 @@ public class TimeManager : MonoBehaviour {
         levelDuration -= Time.deltaTime;
         CurrentTime = levelDuration;
 
-        if (levelDuration <= 0.5f) {
-            CurrentTimer = 3;
+        if (levelDuration <= lastSeconds) {
+            TimerIndex = 3;
         }
     }
 
@@ -65,8 +77,8 @@ public class TimeManager : MonoBehaviour {
         lastSeconds -= Time.deltaTime;
         CurrentTime = lastSeconds;
 
-        if (lastSeconds <= 0.5f) {
-            CurrentTimer = 0;
+        if (lastSeconds <= 1.0f) {
+            TimerIndex = 0;
         }
     }
 

@@ -626,15 +626,6 @@ namespace ECM.Controllers
 
         protected virtual void HandleInput()
         {
-            // moveDirection = new Vector3
-            // {
-            //     x = Input.GetAxisRaw("Horizontal"),
-            //     y = 0.0f,
-            //     z = Input.GetAxisRaw("Vertical")
-            // };
-
-            // jump = Input.GetButton("Jump");
-
             // OWN CODE
             moveDirection = new Vector3
             {
@@ -701,17 +692,25 @@ namespace ECM.Controllers
 
         public virtual void FixedUpdate()
         {
-            // Perform character movement
-
-            Move();
+            if (TimeManager.TimerIndex > 1) {
+                // Perform character movement
+                Move();
+            } else {
+                // Stop player movement
+                if (movement.velocity != Vector3.zero) {
+                    movement.Move(Vector3.zero, 0);
+                }
+            }
         }
 
         public virtual void Update()
         {
             // OWN CODE
             if (!PlayerSheetScript.isDead) {
-                // Handle input
-                HandleInput();
+                // if (TimeManager.TimerIndex > 1) {
+                    // Handle input
+                    HandleInput();
+                // }
 
                 // Update character rotation
 
