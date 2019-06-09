@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
     public static int PlayerCount = 0;
     public static int ConnectedGamepads = 0;
 
+    public static List<int> RankingsArr = new List<int>();
+
     private GamepadManager gamepadManagerScript;
     private PlatformSpawner platformSpawnerScript;
     private CharacterSpawner characterSpawnerScript;

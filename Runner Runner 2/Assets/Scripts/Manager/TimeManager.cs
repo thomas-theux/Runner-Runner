@@ -15,6 +15,8 @@ public class TimeManager : MonoBehaviour {
     public static float CurrentTime;
     public static int TimerIndex = 0;
 
+    public static bool ShowResults = false;
+
     private float levelCountdown;
     private float levelDuration;
     private float lastSeconds;
@@ -48,8 +50,6 @@ public class TimeManager : MonoBehaviour {
         if (TimerIndex == 3) {
             LastSeconds();
         }
-
-        // print(TimerIndex);
     }
 
 
@@ -85,9 +85,11 @@ public class TimeManager : MonoBehaviour {
 
     public static void RunEnds(GameObject raceWinner) {
         TimerIndex = 0;
+        ShowResults = true;
 
         int winnerID = raceWinner.GetComponent<PlayerSheet>().playerID;
-        print("Player " + winnerID + " wins!");
+        // print("Player " + winnerID + " wins!");
+        GameManager.RankingsArr.Add(winnerID);
     }
 
 }
