@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DestroyDevCam : MonoBehaviour {
 
-    public Camera DevCam;
+    // public Camera DevCam;
 
     private void Awake() {
-        Destroy(this.DevCam);
+        // Destroy(this.DevCam);
+        Destroy(this.gameObject);
     }
 }

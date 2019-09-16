@@ -9,15 +9,16 @@ public class GamepadManager : MonoBehaviour {
         ReInput.ControllerConnectedEvent += OnControllerConnected;
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
+		// DEV STUFF
 		// connectedGamepads = ReInput.controllers.joystickCount;
-		GameManager.ConnectedGamepads = 2;
+		GameSettings.ConnectedGamepads = 2;
 
-        GameManager.PlayerCount = GameManager.ConnectedGamepads;
+        GameSettings.PlayerCount = GameSettings.ConnectedGamepads;
     }
 
 
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
-		if (GameManager.ConnectedGamepads < SettingsManager.PlayerMax) {
+		if (GameSettings.ConnectedGamepads < SettingsManager.PlayerMax) {
 			// connectedGamepads = ReInput.controllers.joystickCount;
 		} else {
 			print("No more controllers allowed");
@@ -26,7 +27,7 @@ public class GamepadManager : MonoBehaviour {
 
 
 	void OnControllerDisconnected(ControllerStatusChangedEventArgs args) {
-		if (GameManager.ConnectedGamepads > 0) {
+		if (GameSettings.ConnectedGamepads > 0) {
 			// connectedGamepads = ReInput.controllers.joystickCount;
 		} else {
 			print("No more controllers to disconnect");

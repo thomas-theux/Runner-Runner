@@ -6,7 +6,9 @@ public class PlatformSpawner : MonoBehaviour {
 
     public GameObject PlatformGO;
     public GameObject StartGO;
-    public GameObject FinishGO;
+
+    public GameObject FinishSprintGO;
+    public GameObject FinishParkourGO;
 
     private GameObject levelGround;
     private GameObject platformContainer;
@@ -16,6 +18,18 @@ public class PlatformSpawner : MonoBehaviour {
 
 
     public void SpawnPlatforms() {
+        switch (GameSettings.SelectedGameMode) {
+            case 0:
+                SprintMode();
+                break;
+            case 1:
+                ParkourMode();
+                break;
+        }
+    }
+
+
+    private void SprintMode() {
         levelGround = GameObject.Find("Level Ground");
         platformContainer = GameObject.Find("Platform Container");
 
@@ -40,7 +54,7 @@ public class PlatformSpawner : MonoBehaviour {
         newStart.transform.parent = platformContainer.transform;
         newStart.transform.localPosition = new Vector3(0, newStart.transform.position.y, -startFinishZ);
 
-        GameObject newFinish = Instantiate(FinishGO);
+        GameObject newFinish = Instantiate(FinishSprintGO);
         newFinish.transform.parent = platformContainer.transform;
         newFinish.transform.localPosition = new Vector3(0, newFinish.transform.position.y, startFinishZ);
 
@@ -53,6 +67,10 @@ public class PlatformSpawner : MonoBehaviour {
             newPlatform.transform.parent = platformContainer.transform;
             newPlatform.transform.localPosition = new Vector3(rndX, newPlatform.transform.position.y, rndZ);
         }
+    }
+
+
+    private void ParkourMode() {
     }
 
 }

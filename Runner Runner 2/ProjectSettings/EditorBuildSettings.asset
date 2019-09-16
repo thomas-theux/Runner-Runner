@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/GameModes/0 Sprint/SprintLevel.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/GameModes/1 Parkour/TestLevel.unity
+    guid: 29e2be45d836b45ffb1736e7d35b70a2
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 74ad316683ccc4720b9d39cc9f2bac8a
   m_configObjects: {}

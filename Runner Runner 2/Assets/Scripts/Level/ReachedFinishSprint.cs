@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReachedFinish : MonoBehaviour {
+public class ReachedFinishSprint : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Character") {

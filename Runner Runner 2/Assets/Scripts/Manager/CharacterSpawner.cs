@@ -13,7 +13,7 @@ public class CharacterSpawner : MonoBehaviour {
     public void SpawnCharacters() {
         spawnGO = GameObject.Find("Start Spawn");
 
-        for (int i = 0; i < GameManager.PlayerCount; i++) {
+        for (int i = 0; i < GameSettings.PlayerCount; i++) {
             GameObject newCharacter = Instantiate(CharacterGO);
             newCharacter.transform.position = spawnGO.transform.position;
             newCharacter.GetComponent<PlayerSheet>().playerID = i;
@@ -50,13 +50,13 @@ public class CharacterSpawner : MonoBehaviour {
                 break;
         }
 
-        if (GameManager.PlayerCount == 2) {
+        if (GameSettings.PlayerCount == 2) {
             camPosY = 0.0f;
             camHeight = 1.0f;
         }
 
         // Single player camera for dev testing
-        if (GameManager.PlayerCount == 1) {
+        if (GameSettings.PlayerCount == 1) {
             camPosX = 0.0f;
             camPosY = 0.0f;
             camHeight = 1.0f;
