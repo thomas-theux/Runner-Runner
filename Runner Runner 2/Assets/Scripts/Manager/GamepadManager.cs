@@ -18,7 +18,7 @@ public class GamepadManager : MonoBehaviour {
 
 
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
-		if (GameSettings.ConnectedGamepads < SettingsManager.PlayerMax) {
+		if (GameSettings.ConnectedGamepads < GameSettings.PlayerMax) {
 			// connectedGamepads = ReInput.controllers.joystickCount;
 		} else {
 			print("No more controllers allowed");

@@ -30,7 +30,7 @@ public class DisplayResults : MonoBehaviour {
 
         charID = this.transform.parent.GetComponent<PlayerSheet>().playerID;
 
-        switch (SettingsManager.GameMode) {
+        switch (GameSettings.SelectedGameMode) {
             case 0:
             if (GameManager.RankingsArr[0] == charID) {
                 rankingsText.text = "Winner!";

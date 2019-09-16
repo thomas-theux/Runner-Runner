@@ -23,9 +23,9 @@ public class TimeManager : MonoBehaviour {
 
 
     public void StartLevelTimer() {
-        levelCountdown = SettingsManager.LevelCountdown + additionalTime;
-        levelDuration = SettingsManager.LevelDuration + additionalTime;
-        lastSeconds = SettingsManager.LastSeconds + additionalTime;
+        levelCountdown = GameSettings.LevelCountdown + additionalTime;
+        levelDuration = GameSettings.LevelDuration + additionalTime;
+        lastSeconds = GameSettings.LastSeconds + additionalTime;
 
         StartCoroutine(LevelStartDelay());
     }
