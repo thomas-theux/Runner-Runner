@@ -10,6 +10,8 @@ public class DEVRayCast : MonoBehaviour {
     public Material OpaqueWall;
     public Material TransparentWall;
 
+    private GameObject lastCollision = null;
+
 
     private void Awake() {
         // Collides with all objects except the characters
@@ -29,9 +31,13 @@ public class DEVRayCast : MonoBehaviour {
         Debug.DrawRay(transform.position, raycastDir, Color.yellow);
 
         if (hitWall) {
-            hit.collider.gameObject.GetComponent<Renderer>().material = TransparentWall;
+            this.lastCollision = hit.collider.gameObject;
+            this.lastCollision.GetComponent<Renderer>().material = TransparentWall;
         } else {
-            hit.collider.gameObject.GetComponent<Renderer>().material = OpaqueWall;
+            if (lastCollision != null) {
+                this.lastCollision.GetComponent<Renderer>().material = OpaqueWall;
+                this.lastCollision = null;
+            }
         }
     }
 
