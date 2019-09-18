@@ -6,7 +6,7 @@ public class KillingFloor : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Character") {
-            other.GetComponent<CharacterLifeHandler>().KillCharacter();
+            other.GetComponent<CharacterLifeHandler>().KillCharacter(false);
         }
     }
 

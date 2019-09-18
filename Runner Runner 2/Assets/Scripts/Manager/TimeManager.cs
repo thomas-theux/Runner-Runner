@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour {
 
-    private float initialDelay = 1.0f;
-    private float initialCountdownMultiplier = 1.0f;
-    private float additionalTime = 0.9f;
-
     // 0 = game didn't start yet or is already finished
     // 1 = level start countdown
     // 2 = level started
@@ -23,16 +19,16 @@ public class TimeManager : MonoBehaviour {
 
 
     public void StartLevelTimer() {
-        levelCountdown = GameSettings.LevelCountdown + additionalTime;
-        levelDuration = GameSettings.LevelDuration + additionalTime;
-        lastSeconds = GameSettings.LastSeconds + additionalTime;
+        levelCountdown = GameSettings.LevelCountdown + GameSettings.AdditionalTime;
+        levelDuration = GameSettings.LevelDuration + GameSettings.AdditionalTime;
+        lastSeconds = GameSettings.LastSeconds + GameSettings.AdditionalTime;
 
         StartCoroutine(LevelStartDelay());
     }
 
 
     private IEnumerator LevelStartDelay() {
-        yield return new WaitForSeconds(initialDelay);
+        yield return new WaitForSeconds(GameSettings.InitialDelay);
 
         TimerIndex = 1;
     }
@@ -54,7 +50,7 @@ public class TimeManager : MonoBehaviour {
 
 
     private void LevelCountdown() {
-        levelCountdown -= Time.deltaTime * initialCountdownMultiplier;
+        levelCountdown -= Time.deltaTime * GameSettings.InitialCountdownMultiplier;
         CurrentTime = levelCountdown;
 
         if (levelCountdown <= 1.0f) {

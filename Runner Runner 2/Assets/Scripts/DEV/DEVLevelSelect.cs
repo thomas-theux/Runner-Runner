@@ -8,10 +8,11 @@ public class DEVLevelSelect : MonoBehaviour {
     private void Awake() {
         switch (GameSettings.SelectedGameMode) {
             case 0:
-                 SceneManager.LoadScene("SprintLevel");
+                SceneManager.LoadScene("SprintLevel");
                 break;
             case 1:
-                 SceneManager.LoadScene("TestLevel");
+                // SceneManager.LoadScene("1 Left And Right");
+                SceneManager.LoadScene("2 Pillars");
                 break;
         }
     }

@@ -95,6 +95,8 @@ namespace ECM.Controllers
 
         // OWN CODE
         private PlayerSheet PlayerSheetScript;
+        private CharacterLifeHandler CharacterLifeHandlerScript;
+        private bool reset = false;
 
         private Vector3 _moveDirection;
 
@@ -635,6 +637,7 @@ namespace ECM.Controllers
             };
 
             jump = ReInput.players.GetPlayer(PlayerSheetScript.playerID).GetButtonDown("X");
+            reset = ReInput.players.GetPlayer(PlayerSheetScript.playerID).GetButtonDown("Circle");
         }
 
         #endregion
@@ -680,6 +683,7 @@ namespace ECM.Controllers
         {
             // OWN CODE
             PlayerSheetScript = GetComponent<PlayerSheet>();
+            CharacterLifeHandlerScript = GetComponent<CharacterLifeHandler>();
 
             // Cache components
 
@@ -692,7 +696,7 @@ namespace ECM.Controllers
 
         public virtual void FixedUpdate()
         {
-            if (TimeManager.TimerIndex > 1) {
+            if (TimeManager.TimerIndex > 1 && !PlayerSheetScript.isRespawning) {
                 // Perform character movement
                 Move();
             } else {
@@ -712,13 +716,21 @@ namespace ECM.Controllers
                     HandleInput();
                 // }
 
-                // Update character rotation
+                // Reset character
+                ResetCharacter();
 
+                // Update character rotation
                 UpdateRotation();
 
                 // Perform character animation
-
                 Animate();
+            }
+        }
+
+
+        private void ResetCharacter() {
+            if (reset) {
+                CharacterLifeHandlerScript.KillCharacter(false);
             }
         }
 
