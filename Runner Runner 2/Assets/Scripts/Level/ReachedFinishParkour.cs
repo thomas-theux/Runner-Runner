@@ -12,7 +12,11 @@ public class ReachedFinishParkour : MonoBehaviour {
             float newTime = displayTimerScript.CurrentRunTimes;
             float bestTime = playerSheetScript.BestRunTime;
 
+            FindObjectOfType<AudioManager>().Play("ReachFinish");
+
             if (newTime < bestTime) {
+                FindObjectOfType<AudioManager>().Play("NewBest");
+
                 // Overwrite the current best time of the player
                 playerSheetScript.BestRunTime = newTime;
                 displayTimerScript.BestTime.text = FormatBestTime(playerSheetScript.BestRunTime);

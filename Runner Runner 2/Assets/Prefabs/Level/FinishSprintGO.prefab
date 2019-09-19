@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6035460861751116604}
   - component: {fileID: 4727652649708990245}
   - component: {fileID: 2364825164168314288}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FinishTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,8 +81,8 @@ GameObject:
   - component: {fileID: 4386162016399918818}
   - component: {fileID: 4314411106441201012}
   - component: {fileID: 1329079939220141384}
-  m_Layer: 0
-  m_Name: FinishGO
+  m_Layer: 11
+  m_Name: FinishSprintGO
   m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

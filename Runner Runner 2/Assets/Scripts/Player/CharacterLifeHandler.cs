@@ -37,7 +37,7 @@ public class CharacterLifeHandler : MonoBehaviour {
     public void KillCharacter(bool didFinish) {
         this.playerSheetScript.isDead = true;
         this.rb.isKinematic = true;
-        
+
         if (!didFinish) {
             this.characterModel.SetActive(false);
         }
@@ -52,9 +52,12 @@ public class CharacterLifeHandler : MonoBehaviour {
         // If the player finished the level, there will be a bigger delay until respawn
         if (didFinish) {
             delayRespawn = GameSettings.RespawnDelayTime;
+            yield return new WaitForSeconds(delayRespawn);
+            FindObjectOfType<AudioManager>().Play("ResetCharacter");
+        } else {
+            FindObjectOfType<AudioManager>().Play("ResetCharacter");
+            yield return new WaitForSeconds(delayRespawn);
         }
-
-        yield return new WaitForSeconds(delayRespawn);
 
         if (TimeManager.TimerIndex > 0) {
             this.transform.position = spawnGO.transform.position;

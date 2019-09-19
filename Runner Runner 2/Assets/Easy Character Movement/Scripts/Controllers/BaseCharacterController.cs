@@ -470,6 +470,9 @@ namespace ECM.Controllers
 
             movement.ApplyVerticalImpulse(jumpImpulse);
 
+            // OWN CODE
+            FindObjectOfType<AudioManager>().PlayRandom("Jumping", 0.7f, 1.2f);
+
             // 'Pause' grounding, allowing character to safely leave the 'ground'
 
             movement.DisableGrounding();
@@ -738,6 +741,7 @@ namespace ECM.Controllers
 
         private void ResetCharacter() {
             if (reset) {
+                // FindObjectOfType<AudioManager>().Play("ResetCharacter");
                 CharacterLifeHandlerScript.KillCharacter(false);
             }
         }

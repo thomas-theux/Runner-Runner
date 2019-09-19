@@ -16,6 +16,7 @@ public class DisplayTimer : MonoBehaviour {
     public float CurrentRunTimes = 0f;
 
     private float levelCountdown;
+    public bool isTicking = false;
 
 
     public void Awake() {
@@ -33,6 +34,11 @@ public class DisplayTimer : MonoBehaviour {
         }
 
         if (PlayerSheetScript.isRespawning) {
+            if (!isTicking) {
+                isTicking = true;
+                StartCoroutine(TickingSound());
+            }
+
             RespawnCountdown();
         }
     }
@@ -64,13 +70,15 @@ public class DisplayTimer : MonoBehaviour {
         if (levelCountdown <= 1.0f) {
             levelCountdown = GameSettings.LevelCountdown + GameSettings.AdditionalTime;
         }
-        
+
         levelCountdown -= Time.deltaTime * GameSettings.InitialCountdownMultiplier;
         StartTimer.text = Mathf.Floor(levelCountdown) + "";
 
         if (levelCountdown <= 1.0f) {
+            isTicking = false;
             PlayerSheetScript.isRespawning = false;
             StartTimer.text = "";
+            FindObjectOfType<AudioManager>().Play("LevelStart");
         }
     }
 
@@ -89,6 +97,14 @@ public class DisplayTimer : MonoBehaviour {
         int milliseconds = (int) (100 * (CurrentRunTimes - minutes * 60 - seconds));
 
         return string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+    }
+
+
+    private IEnumerator TickingSound() {
+        while (isTicking) {
+            FindObjectOfType<AudioManager>().Play("TimerTicking");
+            yield return new WaitForSeconds(1.0f / GameSettings.InitialCountdownMultiplier);
+        }
     }
 
 }

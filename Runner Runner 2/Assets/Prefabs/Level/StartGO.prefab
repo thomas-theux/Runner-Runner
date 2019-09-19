@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 136291482}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Start Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1144465539690445117}
   - component: {fileID: 8902655092662972094}
   - component: {fileID: 294994259737836831}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StartGO
   m_TagString: Platform
   m_Icon: {fileID: 0}

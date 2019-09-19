@@ -16,6 +16,8 @@ public class TimeManager : MonoBehaviour {
 
     public static bool ShowResults = false;
 
+    private bool isTicking = false;
+
     private float levelCountdown;
     private float levelDuration;
     private float lastSeconds;
@@ -45,10 +47,16 @@ public class TimeManager : MonoBehaviour {
 
     private void Update() {
         if (TimerIndex == 1) {
+            if (!isTicking) {
+                isTicking = true;
+                StartCoroutine(TickingSound());
+            }
+
             LevelCountdown();
         }
 
         if (TimerIndex == 2) {
+            isTicking = false;
             LevelDuration();
         }
 
@@ -64,6 +72,7 @@ public class TimeManager : MonoBehaviour {
 
         if (levelCountdown <= 1.0f) {
             TimerIndex = 2;
+            FindObjectOfType<AudioManager>().Play("LevelStart");
         }
     }
 
@@ -103,12 +112,22 @@ public class TimeManager : MonoBehaviour {
 
 
     public static void RunEnds(GameObject raceWinner) {
+        FindObjectOfType<AudioManager>().Play("LevelEnd");
+
         TimerIndex = 0;
         ShowResults = true;
 
         int winnerID = raceWinner.GetComponent<PlayerSheet>().playerID;
         // print("Player " + winnerID + " wins!");
         GameManager.RankingsArr.Add(winnerID);
+    }
+
+
+    private IEnumerator TickingSound() {
+        while (isTicking) {
+            FindObjectOfType<AudioManager>().Play("TimerTicking");
+            yield return new WaitForSeconds(1.0f / GameSettings.InitialCountdownMultiplier);
+        }
     }
 
 }
