@@ -11,8 +11,8 @@ public class DEVLevelSelect : MonoBehaviour {
                 SceneManager.LoadScene("SprintLevel");
                 break;
             case 1:
-                // SceneManager.LoadScene("1 Left And Right");
-                SceneManager.LoadScene("2 Pillars");
+                SceneManager.LoadScene("1 Left And Right");
+                // SceneManager.LoadScene("3 Pillars");
                 break;
         }
     }

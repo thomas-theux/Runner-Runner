@@ -11,6 +11,9 @@ public class TimeManager : MonoBehaviour {
     public static float CurrentTime;
     public static int TimerIndex = 0;
 
+    public static List<float> PlayersBestTimesArr = new List<float>();
+    public static List<float> SortedBestTimesArr = new List<float>();
+
     public static bool ShowResults = false;
 
     private float levelCountdown;
@@ -19,6 +22,12 @@ public class TimeManager : MonoBehaviour {
 
 
     public void StartLevelTimer() {
+        // Add the initial best time for each player
+        for (int i = 0; i < GameSettings.PlayerCount; i++) {
+            float initialBestRunTime = GameManager.AllPlayers[i].GetComponent<PlayerSheet>().BestRunTime;
+            PlayersBestTimesArr.Add(initialBestRunTime);
+        }
+
         levelCountdown = GameSettings.LevelCountdown + GameSettings.AdditionalTime;
         levelDuration = GameSettings.LevelDuration + GameSettings.AdditionalTime;
         lastSeconds = GameSettings.LastSeconds + GameSettings.AdditionalTime;
@@ -75,6 +84,20 @@ public class TimeManager : MonoBehaviour {
 
         if (lastSeconds <= 1.0f) {
             TimerIndex = 0;
+        }
+    }
+
+
+    public static void SortBestTimesArray() {
+        SortedBestTimesArr = PlayersBestTimesArr;
+        SortedBestTimesArr.Sort();
+    }
+
+
+    public static void UpdatePlayerRanks() {
+        for (int i = 0; i < PlayersBestTimesArr.Count; i++) {
+            int getRank = SortedBestTimesArr.IndexOf(PlayersBestTimesArr[i]);
+            GameManager.AllPlayers[i].GetComponent<CharacterLifeHandler>().DisplayTimerScript.PlayerRank.text = getRank + 1 + "/" + GameSettings.PlayerCount;
         }
     }
 

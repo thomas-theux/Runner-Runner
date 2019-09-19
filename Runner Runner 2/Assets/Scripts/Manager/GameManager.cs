@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    public static List<GameObject> AllPlayers = new List<GameObject>();
+
     public static List<int> RankingsArr = new List<int>();
 
     private GamepadManager gamepadManagerScript;

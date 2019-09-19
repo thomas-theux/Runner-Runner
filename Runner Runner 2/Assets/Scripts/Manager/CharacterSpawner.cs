@@ -18,6 +18,9 @@ public class CharacterSpawner : MonoBehaviour {
             newCharacter.transform.position = spawnGO.transform.position;
             newCharacter.GetComponent<PlayerSheet>().playerID = i;
 
+            // Add newly spawned character to an AllPlayers array
+            GameManager.AllPlayers.Add(newCharacter);
+
             characterCam = newCharacter.transform.GetChild(2).GetComponent<Camera>();
 
             AdjustCameras(characterCam, i);

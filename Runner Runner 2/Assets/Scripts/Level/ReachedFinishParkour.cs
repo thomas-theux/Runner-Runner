@@ -13,8 +13,18 @@ public class ReachedFinishParkour : MonoBehaviour {
             float bestTime = playerSheetScript.BestRunTime;
 
             if (newTime < bestTime) {
+                // Overwrite the current best time of the player
                 playerSheetScript.BestRunTime = newTime;
                 displayTimerScript.BestTime.text = FormatBestTime(playerSheetScript.BestRunTime);
+
+                // Set the new best time also in the best times array in the TimeManager script
+                TimeManager.PlayersBestTimesArr[playerSheetScript.playerID] = playerSheetScript.BestRunTime;
+
+                // Trigger sorting function
+                TimeManager.SortBestTimesArray();
+
+                // Update all player ranks
+                TimeManager.UpdatePlayerRanks();
             }
 
             other.GetComponent<CharacterLifeHandler>().KillCharacter(true);

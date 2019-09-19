@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GameModes/0 Sprint/SprintLevel.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/GameModes/1 Parkour/2 Pillars.unity
+    path: Assets/Scenes/GameModes/1 Parkour/3 Pillars.unity
     guid: 29e2be45d836b45ffb1736e7d35b70a2
   - enabled: 1
     path: Assets/Scenes/GameModes/1 Parkour/1 Left And Right.unity

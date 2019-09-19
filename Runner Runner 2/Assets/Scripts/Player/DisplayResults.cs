@@ -32,11 +32,11 @@ public class DisplayResults : MonoBehaviour {
 
         switch (GameSettings.SelectedGameMode) {
             case 0:
-            if (GameManager.RankingsArr[0] == charID) {
-                rankingsText.text = "Winner!";
-            } else {
-                rankingsText.text = "Loser!";
-            }
+                if (GameManager.RankingsArr[0] == charID) {
+                    rankingsText.text = "Winner!";
+                } else {
+                    rankingsText.text = "Loser!";
+                }
                 break;
         }
     }

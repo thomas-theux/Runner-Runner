@@ -10,6 +10,7 @@ public class DisplayTimer : MonoBehaviour {
     public TMP_Text StartTimer;
     public TMP_Text LevelTimer;
     public TMP_Text BestTime;
+    public TMP_Text PlayerRank;
     public TMP_Text CurrentRunTimer;
 
     public float CurrentRunTimes = 0f;

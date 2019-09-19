@@ -96,7 +96,11 @@ namespace ECM.Controllers
         // OWN CODE
         private PlayerSheet PlayerSheetScript;
         private CharacterLifeHandler CharacterLifeHandlerScript;
+
         private bool reset = false;
+
+        public Animator anim;
+        // END
 
         private Vector3 _moveDirection;
 
@@ -607,7 +611,11 @@ namespace ECM.Controllers
         /// Perform character animation.
         /// </summary>
 
-        protected virtual void Animate() { }
+        protected virtual void Animate() {
+            anim.SetFloat("CharSpeed", (Mathf.Abs(ReInput.players.GetPlayer(PlayerSheetScript.playerID).GetAxis("LS Horizontal")) + Mathf.Abs(ReInput.players.GetPlayer(PlayerSheetScript.playerID).GetAxis("LS Vertical"))));
+            anim.SetBool("IsGrounded", isGrounded);
+            anim.SetBool("IsJumping", jump);
+        }
 
         /// <summary>
         /// Update character's rotation.
