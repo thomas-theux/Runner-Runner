@@ -6,7 +6,7 @@
     public static int ConnectedGamepads = 0;
 
     // 0 = Sprint; 1 = Parkour
-    public static int SelectedGameMode = 0;
+    public static int SelectedGameMode = 1;
 
     // TIME related stuff
     public static float InitialDelay = 1.0f;

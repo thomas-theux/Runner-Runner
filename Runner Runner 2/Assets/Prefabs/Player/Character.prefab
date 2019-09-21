@@ -941,6 +941,7 @@ MonoBehaviour:
   PlayerRank: {fileID: 7384189839473243499}
   CurrentRunTimer: {fileID: 3859964082477332059}
   CurrentRunTimes: 0
+  isTicking: 0
 --- !u!114 &2046283930083718904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1100,10 +1101,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 176724f165ed631408775764c436d474, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 2
+  m_Radius: 0.6
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &-3735735060232531691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1149,9 +1150,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _groundLimit: 60
-  _stepOffset: 0.3
-  _ledgeOffset: 0.4
-  _castDistance: 0.4
+  _stepOffset: 0.6
+  _ledgeOffset: 0.6
+  _castDistance: 0.6
   _triggerInteraction: 1
 --- !u!114 &6020085720170289693
 MonoBehaviour:
@@ -1195,10 +1196,10 @@ MonoBehaviour:
   _useBrakingFriction: 0
   _brakingFriction: 8
   _airFriction: 0
-  _airControl: 0.8
+  _airControl: 1
   _baseJumpHeight: 2
   _extraJumpTime: 3
-  _extraJumpPower: 25
+  _extraJumpPower: 30
   _jumpToleranceTime: 0.15
   _maxMidAirJumps: 1
   _useRootMotion: 0
@@ -1635,17 +1636,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8fe41dfa50afd43df950a0ceba628c83,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8fe41dfa50afd43df950a0ceba628c83,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8fe41dfa50afd43df950a0ceba628c83,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fe41dfa50afd43df950a0ceba628c83, type: 3}

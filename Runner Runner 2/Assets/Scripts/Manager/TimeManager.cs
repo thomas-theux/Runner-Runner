@@ -28,6 +28,7 @@ public class TimeManager : MonoBehaviour {
         for (int i = 0; i < GameSettings.PlayerCount; i++) {
             float initialBestRunTime = GameManager.AllPlayers[i].GetComponent<PlayerSheet>().BestRunTime;
             PlayersBestTimesArr.Add(initialBestRunTime);
+            SortedBestTimesArr.Add(initialBestRunTime);
         }
 
         levelCountdown = GameSettings.LevelCountdown + GameSettings.AdditionalTime;
@@ -98,7 +99,10 @@ public class TimeManager : MonoBehaviour {
 
 
     public static void SortBestTimesArray() {
-        SortedBestTimesArr = PlayersBestTimesArr;
+        for (int i = 0; i < PlayersBestTimesArr.Count; i++) {
+            SortedBestTimesArr[i] = PlayersBestTimesArr[i];
+        }
+
         SortedBestTimesArr.Sort();
     }
 
@@ -106,6 +110,7 @@ public class TimeManager : MonoBehaviour {
     public static void UpdatePlayerRanks() {
         for (int i = 0; i < PlayersBestTimesArr.Count; i++) {
             int getRank = SortedBestTimesArr.IndexOf(PlayersBestTimesArr[i]);
+            // print(getRank);
             GameManager.AllPlayers[i].GetComponent<CharacterLifeHandler>().DisplayTimerScript.PlayerRank.text = getRank + 1 + "/" + GameSettings.PlayerCount;
         }
     }
