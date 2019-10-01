@@ -1200,8 +1200,8 @@ MonoBehaviour:
   _baseJumpHeight: 2
   _extraJumpTime: 3
   _extraJumpPower: 30
-  _jumpToleranceTime: 0.15
-  _maxMidAirJumps: 1
+  _jumpToleranceTime: 0.5
+  _maxMidAirJumps: 2
   _useRootMotion: 0
   anim: {fileID: 4180045706690004117}
 --- !u!1 &6020085720398055418
