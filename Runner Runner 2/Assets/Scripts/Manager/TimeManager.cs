@@ -10,11 +10,12 @@ public class TimeManager : MonoBehaviour {
     // 3 = last seconds are counting down
     public static float CurrentTime;
     public static int TimerIndex = 0;
+    public static bool LevelEnd = false;
 
     public static List<float> PlayersBestTimesArr = new List<float>();
     public static List<float> SortedBestTimesArr = new List<float>();
 
-    public static bool ShowResults = false;
+    public static bool IsShowingResults = false;
 
     private bool isTicking = false;
 
@@ -93,7 +94,7 @@ public class TimeManager : MonoBehaviour {
         CurrentTime = lastSeconds;
 
         if (lastSeconds <= 1.0f) {
-            TimerIndex = 0;
+            RundEnds();
         }
     }
 
@@ -110,21 +111,29 @@ public class TimeManager : MonoBehaviour {
     public static void UpdatePlayerRanks() {
         for (int i = 0; i < PlayersBestTimesArr.Count; i++) {
             int getRank = SortedBestTimesArr.IndexOf(PlayersBestTimesArr[i]);
-            // print(getRank);
+
+            // Save all ranks to rankings array
+            GameManager.RankingsArr[i] = getRank;
+
+            // Update current ranking in all player UIs
             GameManager.AllPlayers[i].GetComponent<CharacterLifeHandler>().DisplayTimerScript.PlayerRank.text = getRank + 1 + "/" + GameSettings.PlayerCount;
         }
     }
 
 
-    public static void RunEnds(GameObject raceWinner) {
+    public static void RundEnds() {
         FindObjectOfType<AudioManager>().Play("LevelEnd");
 
+        LevelEnd = true;
         TimerIndex = 0;
-        ShowResults = true;
+        IsShowingResults = true;
 
-        int winnerID = raceWinner.GetComponent<PlayerSheet>().playerID;
-        // print("Player " + winnerID + " wins!");
-        GameManager.RankingsArr.Add(winnerID);
+        for (int i = 0; i < GameManager.AllPlayers.Count; i++) {
+            GameManager.AllPlayers[i].GetComponent<CharacterLifeHandler>().DisplayTimerScript.gameObject.GetComponent<DisplayResults>().ShowResults();
+        }
+
+        // int winnerID = raceWinner.GetComponent<PlayerSheet>().playerID;
+        // GameManager.RankingsArr.Add(winnerID);
     }
 
 
@@ -133,6 +142,15 @@ public class TimeManager : MonoBehaviour {
             FindObjectOfType<AudioManager>().Play("TimerTicking");
             yield return new WaitForSeconds(1.0f / GameSettings.InitialCountdownMultiplier);
         }
+    }
+
+
+    public static string FormatBestTime(float bestTime) {
+        int minutes = (int) bestTime / 60;
+        int seconds = (int) bestTime - 60 * minutes;
+        int milliseconds = (int) (100 * (bestTime - minutes * 60 - seconds));
+
+        return string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
     }
 
 }

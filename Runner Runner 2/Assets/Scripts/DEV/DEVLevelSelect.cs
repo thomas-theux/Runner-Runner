@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class DEVLevelSelect : MonoBehaviour {
 
     private void Awake() {
-        switch (GameSettings.SelectedGameMode) {
+        switch (GameSettings.SelectedLevelType) {
             case 0:
-                SceneManager.LoadScene("SprintLevel");
+                SceneManager.LoadScene("Platforms");
                 break;
             case 1:
                 SceneManager.LoadScene("1 Left And Right");

@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour {
         platformSpawnerScript.SpawnPlatforms();
         characterSpawnerScript.SpawnCharacters();
         timeManagerScript.StartLevelTimer();
+
+        // Prepopulate rankings array with player count
+        for (int i = 0; i < AllPlayers.Count; i++) {
+            RankingsArr.Add(99);
+        }
     }
 
 }

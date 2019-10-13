@@ -8,7 +8,7 @@ public class PlatformSpawner : MonoBehaviour {
     public GameObject StartGO;
 
     public GameObject FinishSprintGO;
-    public GameObject FinishParkourGO;
+    public GameObject FinishParcoursGO;
 
     private GameObject levelGround;
     private GameObject platformContainer;
@@ -18,12 +18,12 @@ public class PlatformSpawner : MonoBehaviour {
 
 
     public void SpawnPlatforms() {
-        switch (GameSettings.SelectedGameMode) {
+        switch (GameSettings.SelectedLevelType) {
             case 0:
                 SprintMode();
                 break;
             case 1:
-                ParkourMode();
+                ParcoursMode();
                 break;
         }
     }
@@ -70,7 +70,7 @@ public class PlatformSpawner : MonoBehaviour {
     }
 
 
-    private void ParkourMode() {
+    private void ParcoursMode() {
     }
 
 }

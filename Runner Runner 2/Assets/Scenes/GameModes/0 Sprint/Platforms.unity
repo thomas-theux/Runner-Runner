@@ -497,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 273dadeb451aa439da194a0d940e68df, type: 3}
---- !u!1001 &1887397415
+--- !u!1001 &1592359494
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -507,7 +507,7 @@ PrefabInstance:
     - target: {fileID: 9202275386117556212, guid: 8f82ec2400de343339fe6c08146d96b9,
         type: 3}
       propertyPath: m_Name
-      value: SprintModeManager
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 9202275386117556210, guid: 8f82ec2400de343339fe6c08146d96b9,
         type: 3}
