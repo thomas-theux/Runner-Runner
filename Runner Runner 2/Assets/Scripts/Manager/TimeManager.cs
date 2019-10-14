@@ -43,6 +43,8 @@ public class TimeManager : MonoBehaviour {
         levelDuration = GameSettings.LevelDuration + GameSettings.AdditionalTime;
         lastSeconds = GameSettings.LastSeconds + GameSettings.AdditionalTime;
 
+        LevelEnd = false;
+
         StartCoroutine(LevelStartDelay());
     }
 
@@ -189,13 +191,15 @@ public class TimeManager : MonoBehaviour {
 
 
     private void QuitLevel() {
-        print("quit");
-        SceneManager.LoadScene("Level Select");
+        ResetVariables();
+
+        SceneManager.LoadScene("2 Couch Session");
     }
 
 
     private void ReplayLevel() {
-        print("replay");
+        ResetVariables();
+
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
@@ -203,6 +207,11 @@ public class TimeManager : MonoBehaviour {
 
     private void NextLevel() {
         print("next");
+    }
+
+
+    private void ResetVariables() {
+        GameManager.AllPlayers.Clear();
     }
 
 }
