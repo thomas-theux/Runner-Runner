@@ -721,7 +721,7 @@ namespace ECM.Controllers
         public virtual void Update()
         {
             // OWN CODE
-            if (!PlayerSheetScript.isDead) {
+            if (!PlayerSheetScript.isDead && !TimeManager.LevelEnd) {
                 // if (TimeManager.TimerIndex > 1) {
                     // Handle input
                     HandleInput();

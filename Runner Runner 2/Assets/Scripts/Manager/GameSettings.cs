@@ -18,7 +18,7 @@
     public static float AdditionalTime = 0.9f;
 
     public static float LevelCountdown = 3.0f;
-    public static float LevelDuration = 30.0f;
+    public static float LevelDuration = 3.0f;
     public static float LastSeconds = 5.0f;
 
     public static float RespawnDelayTime = 2.0f;

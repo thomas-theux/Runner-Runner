@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
     private TimeManager timeManagerScript;
 
 
-    private void Awake() {
+    private void Start() {
         gamepadManagerScript = GetComponent<GamepadManager>();
         platformSpawnerScript = GetComponent<PlatformSpawner>();
         characterSpawnerScript = GetComponent<CharacterSpawner>();

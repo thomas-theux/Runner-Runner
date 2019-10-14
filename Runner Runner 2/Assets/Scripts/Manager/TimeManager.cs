@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Rewired;
 
 public class TimeManager : MonoBehaviour {
 
@@ -22,6 +24,11 @@ public class TimeManager : MonoBehaviour {
     private float levelCountdown;
     private float levelDuration;
     private float lastSeconds;
+
+    // REWIRED
+    private bool quitLevelBtn = false;
+    private bool replayLevelBtn = false;
+    private bool nextLevelBtn = false;
 
 
     public void StartLevelTimer() {
@@ -64,6 +71,11 @@ public class TimeManager : MonoBehaviour {
 
         if (TimerIndex == 3) {
             LastSeconds();
+        }
+
+        if (LevelEnd) {
+            GetPlayerInput();
+            LevelEndNavigation();
         }
     }
 
@@ -151,6 +163,46 @@ public class TimeManager : MonoBehaviour {
         int milliseconds = (int) (100 * (bestTime - minutes * 60 - seconds));
 
         return string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+    }
+
+
+    private void GetPlayerInput() {
+        quitLevelBtn = ReInput.players.GetPlayer(0).GetButtonDown("Circle");
+        replayLevelBtn = ReInput.players.GetPlayer(0).GetButtonDown("Square");
+        nextLevelBtn = ReInput.players.GetPlayer(0).GetButtonDown("X");
+    }
+
+
+    private void LevelEndNavigation() {
+        if (quitLevelBtn) {
+            QuitLevel();
+        }
+
+        if (replayLevelBtn) {
+            ReplayLevel();
+        }
+
+        if (nextLevelBtn) {
+            NextLevel();
+        }
+    }
+
+
+    private void QuitLevel() {
+        print("quit");
+        SceneManager.LoadScene("Level Select");
+    }
+
+
+    private void ReplayLevel() {
+        print("replay");
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+
+
+    private void NextLevel() {
+        print("next");
     }
 
 }
