@@ -8,7 +8,7 @@ public class PlatformSpawner : MonoBehaviour {
     public GameObject StartGO;
 
     public GameObject FinishSprintGO;
-    public GameObject FinishParcoursGO;
+    // public GameObject FinishParcoursGO;
 
     private GameObject levelGround;
     private GameObject platformContainer;

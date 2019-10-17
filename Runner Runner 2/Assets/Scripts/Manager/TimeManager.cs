@@ -88,7 +88,7 @@ public class TimeManager : MonoBehaviour {
 
         if (levelCountdown <= 1.0f) {
             TimerIndex = 2;
-            FindObjectOfType<AudioManager>().Play("LevelStart");
+            AudioManager.instance.Play("LevelStart");
         }
     }
 
@@ -136,7 +136,7 @@ public class TimeManager : MonoBehaviour {
 
 
     public static void RundEnds() {
-        FindObjectOfType<AudioManager>().Play("LevelEnd");
+        AudioManager.instance.Play("LevelEnd");
 
         LevelEnd = true;
         TimerIndex = 0;
@@ -153,7 +153,7 @@ public class TimeManager : MonoBehaviour {
 
     private IEnumerator TickingSound() {
         while (isTicking) {
-            FindObjectOfType<AudioManager>().Play("TimerTicking");
+            AudioManager.instance.Play("TimerTicking");
             yield return new WaitForSeconds(1.0f / GameSettings.InitialCountdownMultiplier);
         }
     }
@@ -191,13 +191,17 @@ public class TimeManager : MonoBehaviour {
 
 
     private void QuitLevel() {
+        AudioManager.instance.Play("EndRunUI");
+
         ResetVariables();
 
-        SceneManager.LoadScene("2 Couch Session");
+        SceneManager.LoadScene("1 Main Menu");
     }
 
 
     private void ReplayLevel() {
+        AudioManager.instance.Play("StartRunUI");
+
         ResetVariables();
 
         Scene currentScene = SceneManager.GetActiveScene();
@@ -206,6 +210,8 @@ public class TimeManager : MonoBehaviour {
 
 
     private void NextLevel() {
+        AudioManager.instance.Play("StartRunUI");
+
         print("next");
     }
 

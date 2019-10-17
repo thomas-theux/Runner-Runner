@@ -78,7 +78,7 @@ public class DisplayTimer : MonoBehaviour {
             isTicking = false;
             PlayerSheetScript.isRespawning = false;
             StartTimer.text = "";
-            FindObjectOfType<AudioManager>().Play("LevelStart");
+            AudioManager.instance.Play("LevelStart");
         }
     }
 
@@ -102,7 +102,7 @@ public class DisplayTimer : MonoBehaviour {
 
     private IEnumerator TickingSound() {
         while (isTicking) {
-            FindObjectOfType<AudioManager>().Play("TimerTicking");
+            AudioManager.instance.Play("TimerTicking");
             yield return new WaitForSeconds(1.0f / GameSettings.InitialCountdownMultiplier);
         }
     }

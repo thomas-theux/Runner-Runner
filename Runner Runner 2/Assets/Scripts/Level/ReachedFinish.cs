@@ -54,10 +54,10 @@ public class ReachedFinish : MonoBehaviour {
         float newTime = displayTimerScript.CurrentRunTimes;
         float bestTime = playerSheetScript.BestRunTime;
 
-        FindObjectOfType<AudioManager>().Play("ReachFinish");
+        AudioManager.instance.Play("ReachFinish");
 
         if (newTime < bestTime) {
-            FindObjectOfType<AudioManager>().Play("NewBest");
+            AudioManager.instance.Play("NewBest");
 
             // Overwrite the current best time of the player
             playerSheetScript.BestRunTime = newTime;

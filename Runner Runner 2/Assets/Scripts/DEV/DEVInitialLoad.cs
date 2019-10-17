@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class DEVInitialLoad : MonoBehaviour {
 
     private void Awake() {
-        SceneManager.LoadScene("2 Couch Session");
+        // SceneManager.LoadScene("2 Couch Session");
+        SceneManager.LoadScene("1 Main Menu");
     }
 
 }

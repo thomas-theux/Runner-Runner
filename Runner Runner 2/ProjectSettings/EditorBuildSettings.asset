@@ -6,15 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menus/2 Couch Session.unity
-    guid: 74ad316683ccc4720b9d39cc9f2bac8a
+    path: Assets/Scenes/Menus/0 Initial Load.unity
+    guid: b5d0197dfdb7448ed80ccad9d101388d
+  - enabled: 1
+    path: Assets/Scenes/Menus/1 Main Menu.unity
+    guid: e73abc96b238946eeafb74c3ed87866a
   - enabled: 1
     path: Assets/Scenes/GameModes/0 Sprint/Platforms.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/GameModes/1 Parkour/3 Pillars.unity
-    guid: 29e2be45d836b45ffb1736e7d35b70a2
-  - enabled: 1
-    path: Assets/Scenes/GameModes/1 Parkour/1 Left And Right.unity
+    path: Assets/Scenes/GameModes/1 Parcours/Left And Right.unity
     guid: f95262804fedf4bf6b1b5b12835dd1c6
+  - enabled: 1
+    path: Assets/Scenes/GameModes/1 Parcours/Pillars.unity
+    guid: 29e2be45d836b45ffb1736e7d35b70a2
   m_configObjects: {}

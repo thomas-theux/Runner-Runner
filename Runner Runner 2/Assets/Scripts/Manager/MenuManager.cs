@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour {
     public List<GameObject> MenuItemsArr = new List<GameObject>();
 
     private int overallMenuIndex = 0;
-    private int currentNavIndex = 0;
+    public int CurrentNavIndex = 0;
 
     // REWIRED
     private bool arrowLeft = false;
@@ -26,19 +26,20 @@ public class MenuManager : MonoBehaviour {
 
 
     private void Awake() {
-        for (int i = 0; i < NavigationContainer.transform.childCount; i++) {
-            MenuItemsArr.Add(NavigationContainer.transform.GetChild(i).gameObject);
-        }
-
-        DisplayRightMenu();
-        UpdateNavStates();
+        LoadNewMenu();
     }
 
 
     private void Update() {
         GetInput();
-
         NavigateMainMenu();
+    }
+
+
+    private void LoadNewMenu() {
+        UpdateMenuItemsArr();
+        DisplayRightMenu();
+        UpdateNavStates();
     }
 
 
@@ -53,38 +54,61 @@ public class MenuManager : MonoBehaviour {
     }
 
 
+    private void UpdateMenuItemsArr() {
+        MenuItemsArr.Clear();
+
+        GameObject labelNavContainer = NavigationContainer.transform.GetChild(overallMenuIndex).transform.GetChild(0).transform.GetChild(0).gameObject;
+
+        for (int i = 0; i < labelNavContainer.transform.childCount; i++) {
+            MenuItemsArr.Add(labelNavContainer.transform.GetChild(i).gameObject);
+        }
+    }
+
+
     private void NavigateMainMenu() {
         if (arrowUp) {
-            if (currentNavIndex > 0) {
-                currentNavIndex--;
+            AudioManager.instance.PlayRandom("NavigateUI", 1.0f, 1.0f);
+
+            if (CurrentNavIndex > 0) {
+                CurrentNavIndex--;
             } else {
-                currentNavIndex = MenuItemsArr.Count - 1;
+                CurrentNavIndex = MenuItemsArr.Count - 1;
             }
 
             UpdateNavStates();
         }
 
         if (arrowDown) {
-            if (currentNavIndex < MenuItemsArr.Count - 1) {
-                currentNavIndex++;
+            AudioManager.instance.PlayRandom("NavigateUI", 1.0f, 1.0f);
+
+            if (CurrentNavIndex < MenuItemsArr.Count - 1) {
+                CurrentNavIndex++;
             } else {
-                currentNavIndex = 0;
+                CurrentNavIndex = 0;
             }
 
             UpdateNavStates();
         }
 
         if (interactBtn) {
+            AudioManager.instance.Play("SelectUI");
+
             if (overallMenuIndex == 0) {
-                overallMenuIndex = currentNavIndex + 1;
-                DisplayRightMenu();
+                overallMenuIndex = CurrentNavIndex + 1;
+
+                CurrentNavIndex = 0;
+                LoadNewMenu();
             }
         }
 
         if (cancelBtn) {
+            AudioManager.instance.Play("CancelUI");
+
             if (overallMenuIndex > 0) {
                 overallMenuIndex = 0;
-                DisplayRightMenu();
+
+                CurrentNavIndex = 0;
+                LoadNewMenu();
             }
         }
     }
@@ -92,10 +116,20 @@ public class MenuManager : MonoBehaviour {
 
     private void UpdateNavStates() {
         for (int i = 0; i < MenuItemsArr.Count; i++) {
-            MenuItemsArr[i].transform.GetChild(0).GetComponent<TMP_Text>().color = ColorManager.KeyWhite;
+            MenuItemsArr[i].transform.GetChild(0).transform.GetChild(0).GetComponent<TMP_Text>().color = ColorManager.KeyWhite;
+
+            if (overallMenuIndex > 0) {
+                MenuItemsArr[i].transform.GetChild(1).transform.GetChild(0).GetComponent<TMP_Text>().color = ColorManager.KeyWhite;
+                MenuItemsArr[i].transform.GetChild(2).gameObject.SetActive(false);
+            }
         }
 
-        MenuItemsArr[currentNavIndex].transform.GetChild(0).GetComponent<TMP_Text>().color = ColorManager.KeyYellow;
+        MenuItemsArr[CurrentNavIndex].transform.GetChild(0).transform.GetChild(0).GetComponent<TMP_Text>().color = ColorManager.KeyYellow;
+
+        if (overallMenuIndex > 0) {
+            MenuItemsArr[CurrentNavIndex].transform.GetChild(1).transform.GetChild(0).GetComponent<TMP_Text>().color = ColorManager.KeyYellow;
+            MenuItemsArr[CurrentNavIndex].transform.GetChild(2).gameObject.SetActive(true);
+        }
     }
 
 
@@ -106,5 +140,14 @@ public class MenuManager : MonoBehaviour {
 
         AllMenus[overallMenuIndex].SetActive(true);
     }
+
+
+    // private void DisplaySelectorArrows() {
+    //     for (int i = 0; i < MenuItemsArr.Count; i++) {
+    //         MenuItemsArr[i].transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(false);
+    //     }
+
+    //     MenuItemsArr[CurrentNavIndex].transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(true);
+    // }
 
 }

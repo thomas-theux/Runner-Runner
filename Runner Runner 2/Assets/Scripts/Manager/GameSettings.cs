@@ -9,7 +9,10 @@
     public static int SelectedGameMode = 1;
 
     // 0 = Platforms; 1 = Parcours
-    public static int SelectedLevelType = 1;
+    public static int SelectedLevelType = 0;
+
+    // 0 = Short; 1 = Medium; 2 = Long; 3 = Insane
+    public static int SelectedLevelSize = 1;
 
     // TIME related stuff
     public static float InitialDelay = 1.0f;

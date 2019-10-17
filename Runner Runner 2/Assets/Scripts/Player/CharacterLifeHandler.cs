@@ -53,9 +53,9 @@ public class CharacterLifeHandler : MonoBehaviour {
         if (didFinish) {
             delayRespawn = GameSettings.RespawnDelayTime;
             yield return new WaitForSeconds(delayRespawn);
-            FindObjectOfType<AudioManager>().Play("ResetCharacter");
+            AudioManager.instance.Play("ResetCharacter");
         } else {
-            FindObjectOfType<AudioManager>().Play("ResetCharacter");
+            AudioManager.instance.Play("ResetCharacter");
             yield return new WaitForSeconds(delayRespawn);
         }
 

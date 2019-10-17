@@ -5,7 +5,7 @@ using UnityEngine;
 public class StepSounds : MonoBehaviour {
 
     public void PlayStepSound() {
-        FindObjectOfType<AudioManager>().PlayRandom("BasicStep", 0.9f, 1.1f);
+        AudioManager.instance.PlayRandom("BasicStep", 0.9f, 1.1f);
     }
 
 }

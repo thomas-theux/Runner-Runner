@@ -76,7 +76,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Jumping
     clip: {fileID: 8300000, guid: 7dfdac62c6fb54527ade9527a4ef9540, type: 3}
-    volume: 1
+    volume: 2
     pitch: 1.5
     loop: 0
     source: {fileID: 0}
@@ -90,5 +90,41 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 777187d2335f0448cb8eb4baca3894fe, type: 3}
     volume: 0.8
     pitch: 4
+    loop: 0
+    source: {fileID: 0}
+  - name: NavigateUI
+    clip: {fileID: 8300000, guid: 4f4500c0f7af54dc58c85b54263e8f98, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SelectUI
+    clip: {fileID: 8300000, guid: 242206fc59e744523bd182b6952776bd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CancelUI
+    clip: {fileID: 8300000, guid: 1a87efe2b93ee4fd28ca029ba7a0120a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StartRunUI
+    clip: {fileID: 8300000, guid: 9ef66e84e857048948354959ac6e4609, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EndRunUI
+    clip: {fileID: 8300000, guid: 9e976d0c5712b4f3b9d5ed5c7bd7569d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ReachFinish
+    clip: {fileID: 8300000, guid: 3a4a243495e324e23a6084ada8e9d713, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
