@@ -15,11 +15,16 @@ public class MenuManager : MonoBehaviour {
     private int overallMenuIndex = 0;
     public int CurrentNavIndex = 0;
 
+	private float maxThreshold = 0.5f;
+    private bool axisYActive;
+
     // REWIRED
-    private bool arrowLeft = false;
-    private bool arrowRight = false;
+    // private bool arrowLeft = false;
+    // private bool arrowRight = false;
     private bool arrowUp = false;
     private bool arrowDown = false;
+
+    private float lsVertical = 0.0f;
 
     private bool interactBtn = false;
     private bool cancelBtn = false;
@@ -44,10 +49,12 @@ public class MenuManager : MonoBehaviour {
 
 
     private void GetInput() {
-        arrowLeft = ReInput.players.GetPlayer(0).GetButtonDown("DPad Left");
-        arrowRight = ReInput.players.GetPlayer(0).GetButtonDown("DPad Right");
+        // arrowLeft = ReInput.players.GetPlayer(0).GetButtonDown("DPad Left");
+        // arrowRight = ReInput.players.GetPlayer(0).GetButtonDown("DPad Right");
         arrowUp = ReInput.players.GetPlayer(0).GetButtonDown("DPad Up");
         arrowDown = ReInput.players.GetPlayer(0).GetButtonDown("DPad Down");
+
+        lsVertical = ReInput.players.GetPlayer(0).GetAxis("LS Vertical");
 
         interactBtn = ReInput.players.GetPlayer(0).GetButtonDown("X");
         cancelBtn = ReInput.players.GetPlayer(0).GetButtonDown("Circle");
@@ -66,6 +73,8 @@ public class MenuManager : MonoBehaviour {
 
 
     private void NavigateMainMenu() {
+        // UI navigation with the D-Pad buttons
+        // UP
         if (arrowUp) {
             AudioManager.instance.PlayRandom("NavigateUI", 1.0f, 1.0f);
 
@@ -78,6 +87,7 @@ public class MenuManager : MonoBehaviour {
             UpdateNavStates();
         }
 
+        // DOWN
         if (arrowDown) {
             AudioManager.instance.PlayRandom("NavigateUI", 1.0f, 1.0f);
 
@@ -89,6 +99,46 @@ public class MenuManager : MonoBehaviour {
 
             UpdateNavStates();
         }
+
+        ///////////////////////////////////////////////////////////////////
+
+        // UI navigation with the analog sticks
+        // UP
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") > maxThreshold && !axisYActive) {
+            axisYActive = true;
+            AudioManager.instance.PlayRandom("NavigateUI", 1.0f, 1.0f);
+
+            if (CurrentNavIndex > 0) {
+                CurrentNavIndex--;
+            } else {
+                CurrentNavIndex = MenuItemsArr.Count - 1;
+            }
+
+            UpdateNavStates();
+        }
+
+        // DOWN
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") < -maxThreshold && !axisYActive) {
+            axisYActive = true;
+            AudioManager.instance.PlayRandom("NavigateUI", 1.0f, 1.0f);
+
+            if (CurrentNavIndex < MenuItemsArr.Count - 1) {
+                CurrentNavIndex++;
+            } else {
+                CurrentNavIndex = 0;
+            }
+
+            UpdateNavStates();
+        }
+
+        ///////////////////////////////////////////////////////////////////
+
+        // Reset Y-Axis bool
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") <= maxThreshold && ReInput.players.GetPlayer(0).GetAxis("LS Vertical") >= -maxThreshold) {
+            axisYActive = false;
+        }
+
+        ///////////////////////////////////////////////////////////////////
 
         if (interactBtn) {
             AudioManager.instance.Play("SelectUI");

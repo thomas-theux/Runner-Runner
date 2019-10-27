@@ -13,6 +13,9 @@ public class CouchSessionManager : MonoBehaviour {
     private List<int> optionsIndexes = new List<int>();
     private int[] maxOptionsIndexes = {2, 2, 0, 4};
 
+	private float maxThreshold = 0.5f;
+    private bool axisXActive;
+
     private List<List<string>> couchSessionNavTexts = new List<List<string>>();
     public TMP_Text LevelTitle;
 
@@ -78,6 +81,9 @@ public class CouchSessionManager : MonoBehaviour {
     // REWIRED
     private bool arrowLeft = false;
     private bool arrowRight = false;
+
+    private float lsHorizontal = 0.0f;
+
     private bool startButton = false;
 
 
@@ -117,11 +123,15 @@ public class CouchSessionManager : MonoBehaviour {
         arrowLeft = ReInput.players.GetPlayer(0).GetButtonDown("DPad Left");
         arrowRight = ReInput.players.GetPlayer(0).GetButtonDown("DPad Right");
 
+        lsHorizontal = ReInput.players.GetPlayer(0).GetAxis("LS Horizontal");
+
         startButton = ReInput.players.GetPlayer(0).GetButtonDown("Options");
     }
 
 
     private void NavigateCouchSessionNav() {
+        // UI navigation with the D-Pad buttons
+        // RIGHT
         if (arrowRight) {
             AudioManager.instance.PlayRandom("NavigateUI", 1.1f, 1.1f);
 
@@ -137,6 +147,7 @@ public class CouchSessionManager : MonoBehaviour {
             DisplayMapImage();
         }
 
+        // LEFT
         if (arrowLeft) {
             AudioManager.instance.PlayRandom("NavigateUI", 0.9f, 0.9f);
 
@@ -151,6 +162,54 @@ public class CouchSessionManager : MonoBehaviour {
             DisplaySelectorNavTexts();
             DisplayMapImage();
         }
+
+        ///////////////////////////////////////////////////////////////////
+
+        // UI navigation with the analog sticks
+        // RIGHT
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Horizontal") > maxThreshold && !axisXActive) {
+            axisXActive = true;
+
+            AudioManager.instance.PlayRandom("NavigateUI", 1.1f, 1.1f);
+
+            if (optionsIndexes[MenuManagerScript.CurrentNavIndex] < maxOptionsIndexes[MenuManagerScript.CurrentNavIndex] - 1) {
+                optionsIndexes[MenuManagerScript.CurrentNavIndex]++;
+            } else {
+                optionsIndexes[MenuManagerScript.CurrentNavIndex] = 0;
+            }
+
+            UpdateLevelTexts();
+            DisplayProperSelectorTitle();
+            DisplaySelectorNavTexts();
+            DisplayMapImage();
+        }
+
+        // LEFT
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Horizontal") < -maxThreshold && !axisXActive) {
+            axisXActive = true;
+
+            AudioManager.instance.PlayRandom("NavigateUI", 0.9f, 0.9f);
+
+            if (optionsIndexes[MenuManagerScript.CurrentNavIndex] > 0) {
+                optionsIndexes[MenuManagerScript.CurrentNavIndex]--;
+            } else {
+                optionsIndexes[MenuManagerScript.CurrentNavIndex] = maxOptionsIndexes[MenuManagerScript.CurrentNavIndex] - 1;
+            }
+
+            UpdateLevelTexts();
+            DisplayProperSelectorTitle();
+            DisplaySelectorNavTexts();
+            DisplayMapImage();
+        }
+
+        ///////////////////////////////////////////////////////////////////
+
+        // Reset Y-Axis bool
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Horizontal") <= maxThreshold && ReInput.players.GetPlayer(0).GetAxis("LS Horizontal") >= -maxThreshold) {
+            axisXActive = false;
+        }
+
+        ///////////////////////////////////////////////////////////////////
 
         if (startButton) {
             AudioManager.instance.Play("StartRunUI");
