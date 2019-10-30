@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameModes/1 Parcours/Left And Right.unity
     guid: f95262804fedf4bf6b1b5b12835dd1c6
   - enabled: 1
+    path: Assets/Scenes/GameModes/1 Parcours/Any Ways.unity
+    guid: 16df20c537ab143bd8b1f784943b40f5
+  - enabled: 1
     path: Assets/Scenes/GameModes/1 Parcours/Pillars.unity
     guid: 29e2be45d836b45ffb1736e7d35b70a2
   m_configObjects: {}

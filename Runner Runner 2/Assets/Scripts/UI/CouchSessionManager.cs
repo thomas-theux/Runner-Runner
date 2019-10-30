@@ -63,8 +63,10 @@ public class CouchSessionManager : MonoBehaviour {
         3
     };
 
+    // DEV: Add the maps name here when adding new maps as scenes
     private List<string> levelSelectTexts = new List<string>{
         "Left And Right",
+        "Any Ways",
         "Pillars"
     };
 
@@ -240,7 +242,8 @@ public class CouchSessionManager : MonoBehaviour {
                 couchSessionNavTexts[2] = levelLengthTexts;
                 break;
             case 1:
-                maxOptionsIndexes[2] = 2;
+                // DEV: Change this number when you add new maps
+                maxOptionsIndexes[2] = 3;
                 couchSessionNavTexts[2] = levelSelectTexts;
                 break;
         }
