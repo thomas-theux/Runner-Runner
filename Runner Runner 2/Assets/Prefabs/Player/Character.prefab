@@ -1461,7 +1461,7 @@ MonoBehaviour:
   _extraJumpTime: 3
   _extraJumpPower: 30
   _jumpToleranceTime: 0.5
-  _maxMidAirJumps: 2
+  _maxMidAirJumps: 1
   _useRootMotion: 0
   anim: {fileID: 4180045706690004117}
 --- !u!1 &6020085720398055418
@@ -2067,6 +2067,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5984388485589536855, guid: 8fe41dfa50afd43df950a0ceba628c83,
+        type: 3}
+      propertyPath: m_Name
+      value: Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956494440969907625, guid: 8fe41dfa50afd43df950a0ceba628c83,
+        type: 3}
+      propertyPath: m_Name
+      value: Head
+      objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 8fe41dfa50afd43df950a0ceba628c83,
         type: 3}
       propertyPath: m_Controller
@@ -2142,6 +2152,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: -8295196342602200802, guid: 8fe41dfa50afd43df950a0ceba628c83,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 75a8a444ac4154e4fb7a6d6588d851e4, type: 2}
+    - target: {fileID: 8425787374007640312, guid: 8fe41dfa50afd43df950a0ceba628c83,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 75a8a444ac4154e4fb7a6d6588d851e4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fe41dfa50afd43df950a0ceba628c83, type: 3}
 --- !u!1 &7121276731992169468 stripped

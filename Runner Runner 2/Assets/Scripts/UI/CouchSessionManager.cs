@@ -248,7 +248,7 @@ public class CouchSessionManager : MonoBehaviour {
                 break;
         }
 
-        LevelTitle.text = levelTitleTexts[optionsIndexes[0]];
+        LevelTitle.text = levelTitleTexts[optionsIndexes[1]];
     }
 
 
