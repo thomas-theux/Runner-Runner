@@ -13,6 +13,8 @@ public class PlatformSpawner : MonoBehaviour {
     private GameObject levelGround;
     private GameObject platformContainer;
 
+    private float levelSizeZ = 0;
+
     private int spawnAmount = 20;
     private float levelPadding = 5.0f;
 
@@ -32,6 +34,28 @@ public class PlatformSpawner : MonoBehaviour {
     private void SprintMode() {
         levelGround = GameObject.Find("Level Ground");
         platformContainer = GameObject.Find("Platform Container");
+
+        // Change scale of level ground according to game settings
+        switch (GameSettings.SelectedLevelSize) {
+            case 0:
+                levelSizeZ = 6;
+                break;
+            case 1:
+                levelSizeZ = 12;
+                break;
+            case 2:
+                levelSizeZ = 24;
+                break;
+            case 3:
+                levelSizeZ = 100;
+                break;
+        }
+
+        levelGround.transform.localScale = new Vector3(
+            levelGround.transform.localScale.x,
+            levelGround.transform.localScale.y,
+            levelSizeZ
+        );
 
         spawnAmount = Mathf.RoundToInt(levelGround.transform.localScale.x * levelGround.transform.localScale.z);
 
