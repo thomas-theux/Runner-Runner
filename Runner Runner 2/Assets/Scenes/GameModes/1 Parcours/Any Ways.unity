@@ -5495,6 +5495,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 4580470597041332649, guid: 48607820562214d5185700415f6a4fb8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4580470597041332662, guid: 48607820562214d5185700415f6a4fb8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5503,7 +5508,7 @@ PrefabInstance:
     - target: {fileID: 4580470597041332662, guid: 48607820562214d5185700415f6a4fb8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4580470597041332662, guid: 48607820562214d5185700415f6a4fb8,
         type: 3}
@@ -5578,7 +5583,7 @@ PrefabInstance:
     - target: {fileID: 6638447431884171282, guid: 8fe44c0ecf43345c49c382cf7e9b5981,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6638447431884171282, guid: 8fe44c0ecf43345c49c382cf7e9b5981,
         type: 3}
