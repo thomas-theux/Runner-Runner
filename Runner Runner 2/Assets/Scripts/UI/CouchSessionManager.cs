@@ -9,6 +9,10 @@ using Rewired;
 public class CouchSessionManager : MonoBehaviour {
 
     public MenuManager MenuManagerScript;
+    public GamepadManager GamepadManagerGO;
+
+    public GameObject LevelSetupGO;
+    public GameObject CharacterSelectionGO;
 
     private List<int> optionsIndexes = new List<int>();
     private int[] maxOptionsIndexes = {2, 2, 0, 4};
@@ -104,6 +108,8 @@ public class CouchSessionManager : MonoBehaviour {
 
 
     private void OnEnable() {
+        MenuManager.CouchSessionMenuOn = true;
+
         // Reset ALL indexes
         for (int i = 0; i < optionsIndexes.Count; i++) {
             optionsIndexes[i] = 0;
@@ -112,6 +118,11 @@ public class CouchSessionManager : MonoBehaviour {
         DisplayProperSelectorTitle();
         DisplaySelectorNavTexts();
         DisplayMapImage();
+    }
+
+
+    private void OnDisable() {
+        MenuManager.CouchSessionMenuOn = false;
     }
 
 
@@ -214,23 +225,26 @@ public class CouchSessionManager : MonoBehaviour {
         ///////////////////////////////////////////////////////////////////
 
         if (startButton) {
-            AudioManager.instance.Play("StartRunUI");
+            LevelSetupGO.SetActive(false);
+            CharacterSelectionGO.SetActive(true);
 
-            GameSettings.SelectedGameMode = optionsIndexes[0];
-            GameSettings.SelectedLevelType = optionsIndexes[1];
+            // AudioManager.instance.Play("StartRunUI");
 
-            string selectedScene = "";
+            // GameSettings.SelectedGameMode = optionsIndexes[0];
+            // GameSettings.SelectedLevelType = optionsIndexes[1];
 
-            if (optionsIndexes[1] == 0) {
-                GameSettings.SelectedLevelSize = levelLengthInts[optionsIndexes[2]];
-                selectedScene = "Platforms";
-            } else {
-                selectedScene = levelSelectTexts[optionsIndexes[2]];
-            }
+            // string selectedScene = "";
 
-            GameSettings.LevelDuration = levelTimeInts[optionsIndexes[3]];
+            // if (optionsIndexes[1] == 0) {
+            //     GameSettings.SelectedLevelSize = levelLengthInts[optionsIndexes[2]];
+            //     selectedScene = "Platforms";
+            // } else {
+            //     selectedScene = levelSelectTexts[optionsIndexes[2]];
+            // }
 
-            SceneManager.LoadScene(selectedScene);
+            // GameSettings.LevelDuration = levelTimeInts[optionsIndexes[3]];
+
+            // SceneManager.LoadScene(selectedScene);
         }
     }
 

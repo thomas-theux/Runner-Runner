@@ -29,9 +29,14 @@ public class MenuManager : MonoBehaviour {
     private bool interactBtn = false;
     private bool cancelBtn = false;
 
+    public static bool MainMenuOn = false;
+    public static bool CouchSessionMenuOn = false;
+
 
     private void Awake() {
         LoadNewMenu();
+
+        MainMenuOn = true;
     }
 
 

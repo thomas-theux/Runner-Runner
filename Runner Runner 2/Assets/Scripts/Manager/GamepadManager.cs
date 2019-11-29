@@ -7,11 +7,10 @@ using Rewired;
 public class GamepadManager : MonoBehaviour {
 
 	public Image[] GamepadIcons;
-	public bool MainMenuOn = false;
 
 
 	private void OnEnable() {
-		if (MainMenuOn) {
+		if (MenuManager.MainMenuOn) {
 			InitializeGamepads();
 			UpdateGamepads();
 		}
@@ -24,7 +23,7 @@ public class GamepadManager : MonoBehaviour {
 
 		// DEV STUFF
 		// GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
-		GameSettings.ConnectedGamepads = 2;
+		GameSettings.ConnectedGamepads = 3;
 
 		GameSettings.PlayerCount = GameSettings.ConnectedGamepads;
 	}
@@ -41,12 +40,35 @@ public class GamepadManager : MonoBehaviour {
 	}
 
 
+	private void AddPlayerUI() {
+		switch(GameSettings.ConnectedGamepads) {
+			case 0:
+				// Kein Controller ist connected
+				print("no controller connected");
+				break;
+			case 1:
+				print("1 controller connected");
+				break;
+			case 2:
+				print("2 controller connected");
+				break;
+			case 3:
+				print("3 controller connected");
+				break;
+		}
+	}
+
+
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
 		if (GameSettings.ConnectedGamepads < GameSettings.PlayerMax) {
 			GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
 
-			if (MainMenuOn) {
+			if (MenuManager.MainMenuOn) {
 				UpdateGamepads();
+			}
+
+			if (MenuManager.CouchSessionMenuOn) {
+				AddPlayerUI();
 			}
 
 		} else {
@@ -59,11 +81,15 @@ public class GamepadManager : MonoBehaviour {
 		if (GameSettings.ConnectedGamepads > 0) {
 			GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
 
-			if (MainMenuOn) {
+			if (MenuManager.MainMenuOn) {
 				UpdateGamepads();
 			} else {
-				// Throw gamepad disconnect dialog
+				// Throw "gamepad disconnected" dialog
 				print("Player " + (args.controllerId + 1) + " got disconnected!");
+			}
+
+			if (MenuManager.CouchSessionMenuOn) {
+				// RemovePlayerUIs();
 			}
 
 		} else {
