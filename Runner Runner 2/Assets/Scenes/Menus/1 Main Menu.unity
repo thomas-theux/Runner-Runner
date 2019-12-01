@@ -9320,6 +9320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb20d059902d43cbb2f4fefa9fbbb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterSelectionScript: {fileID: 1210140311}
   GamepadIcons:
   - {fileID: 1779636581}
   - {fileID: 1471780015}

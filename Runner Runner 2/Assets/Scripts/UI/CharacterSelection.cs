@@ -8,7 +8,7 @@ public class CharacterSelection : MonoBehaviour {
     public GameObject CharacterSelectorGO;
     private GameObject charSelParentGO;
 
-    private List<GameObject> characterSelectionUI = new List<GameObject>();
+    public List<GameObject> characterSelectionUI = new List<GameObject>();
 
 
     private void Awake() {
@@ -17,25 +17,35 @@ public class CharacterSelection : MonoBehaviour {
 
 
     private void OnEnable() {
+        MenuManager.CharacterSelectionOn = true;
+
 		// Instantiate player UIs
         for (int i = 0; i < GameSettings.ConnectedGamepads; i++) {
-            GameObject newCharacterSelectorUI = Instantiate(CharacterSelectorGO);
-            characterSelectionUI.Add(newCharacterSelectorUI);
+            // GameObject newCharacterSelectorUI = Instantiate(CharacterSelectorGO);
+            // characterSelectionUI.Add(newCharacterSelectorUI);
 
-            Canvas newSelectorCanvas = characterSelectionUI[i].transform.GetChild(0).GetComponent<Canvas>();
+            // Canvas newSelectorCanvas = characterSelectionUI[i].transform.GetChild(0).GetComponent<Canvas>();
 
             // Root new char sel UI (remove from camera parent GO)
             // GameObject charSelUI = newCharacterSelectorUI.transform.GetChild(0).gameObject;
             // charSelUI.transform.SetParent(charSelParentGO.transform);
 
-            ArrangeCharacterSelectorUIs(i, newSelectorCanvas);
+            ArrangeCharacterSelectorUIs(i);
         }
 	}
 
 
-    public void ArrangeCharacterSelectorUIs(int canvasIndex, Canvas newCanvas) {
+    public void ArrangeCharacterSelectorUIs(int canvasIndex) {
+
+        if (characterSelectionUI.Count < GameSettings.ConnectedGamepads) {
+            GameObject newCharacterSelectorUI = Instantiate(CharacterSelectorGO);
+            characterSelectionUI.Add(newCharacterSelectorUI);
+        }
+
         float newPosX = 0;
         float newPosY = 0;
+
+        Canvas newCanvas = characterSelectionUI[canvasIndex].transform.GetChild(0).GetComponent<Canvas>();
 
         RectTransform newCanvasRect = newCanvas.GetComponent<RectTransform>();
 
@@ -44,22 +54,22 @@ public class CharacterSelection : MonoBehaviour {
 
         switch(canvasIndex) {
             case 0:
-                newBackground.color = ColorManager.KeyBlack20;
+                newBackground.color = ColorManager.TestRed;
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 1:
-                newBackground.color = ColorManager.KeyBlack20;
+                newBackground.color = ColorManager.TestYellow;
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 2:
-                newBackground.color = ColorManager.KeyBlack20;
+                newBackground.color = ColorManager.TestGreen;
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
                 break;
             case 3:
-                newBackground.color = ColorManager.KeyBlack20;
+                newBackground.color = ColorManager.TestBlue;
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
                 break;
@@ -84,6 +94,7 @@ public class CharacterSelection : MonoBehaviour {
         }
 
         newCanvasRect.localPosition = new Vector3(newPosX, newPosY, 0);
+
     }
 
 }

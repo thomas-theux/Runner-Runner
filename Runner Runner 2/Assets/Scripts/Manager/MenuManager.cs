@@ -31,6 +31,7 @@ public class MenuManager : MonoBehaviour {
 
     public static bool MainMenuOn = false;
     public static bool CouchSessionMenuOn = false;
+    public static bool CharacterSelectionOn = false;
 
 
     private void Awake() {

@@ -6,6 +6,8 @@ using Rewired;
 
 public class GamepadManager : MonoBehaviour {
 
+	public CharacterSelection CharacterSelectionScript;
+
 	public Image[] GamepadIcons;
 
 
@@ -22,8 +24,8 @@ public class GamepadManager : MonoBehaviour {
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
 		// DEV STUFF
-		// GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
-		GameSettings.ConnectedGamepads = 3;
+		GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
+		// GameSettings.ConnectedGamepads = 3;
 
 		GameSettings.PlayerCount = GameSettings.ConnectedGamepads;
 	}
@@ -41,21 +43,25 @@ public class GamepadManager : MonoBehaviour {
 
 
 	private void AddPlayerUI() {
-		switch(GameSettings.ConnectedGamepads) {
-			case 0:
-				// Kein Controller ist connected
-				print("no controller connected");
-				break;
-			case 1:
-				print("1 controller connected");
-				break;
-			case 2:
-				print("2 controller connected");
-				break;
-			case 3:
-				print("3 controller connected");
-				break;
+		for (int i = 0; i < GameSettings.ConnectedGamepads; i++) {
+			CharacterSelectionScript.ArrangeCharacterSelectorUIs(i);
 		}
+
+		// switch(GameSettings.ConnectedGamepads) {
+		// 	case 0:
+		// 		// Kein Controller ist connected
+		// 		print("no controller connected");
+		// 		break;
+		// 	case 1:
+		// 		print("1 controller connected");
+		// 		break;
+		// 	case 2:
+		// 		print("2 controller connected");
+		// 		break;
+		// 	case 3:
+		// 		print("3 controller connected");
+		// 		break;
+		// }
 	}
 
 
@@ -67,7 +73,7 @@ public class GamepadManager : MonoBehaviour {
 				UpdateGamepads();
 			}
 
-			if (MenuManager.CouchSessionMenuOn) {
+			if (MenuManager.CharacterSelectionOn) {
 				AddPlayerUI();
 			}
 
