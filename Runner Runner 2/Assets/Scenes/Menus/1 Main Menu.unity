@@ -6831,7 +6831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf377d6af82f4eb8b1479b0c6ccb6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterSelectorGO: {fileID: 6593869072658268876, guid: 81a7838d36f0e47e19d53916ac9adb65,
+  CharacterSelectorGO: {fileID: 1854654598628560720, guid: 880c03f56c47e4f96b112ad714ddfd2a,
     type: 3}
 --- !u!222 &1210140312
 CanvasRenderer:

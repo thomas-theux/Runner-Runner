@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour {
 
@@ -18,59 +19,71 @@ public class CharacterSelection : MonoBehaviour {
     private void OnEnable() {
 		// Instantiate player UIs
         for (int i = 0; i < GameSettings.ConnectedGamepads; i++) {
-            print("Spawn UI #" + i);
-
             GameObject newCharacterSelectorUI = Instantiate(CharacterSelectorGO);
-            newCharacterSelectorUI.transform.SetParent(transform.root);
             characterSelectionUI.Add(newCharacterSelectorUI);
 
-            // Root new char sel UI (remove from camer parent GO)
+            Canvas newSelectorCanvas = characterSelectionUI[i].transform.GetChild(0).GetComponent<Canvas>();
+
+            // Root new char sel UI (remove from camera parent GO)
             // GameObject charSelUI = newCharacterSelectorUI.transform.GetChild(0).gameObject;
             // charSelUI.transform.SetParent(charSelParentGO.transform);
 
-            ArrangeCharacterSelectorUIs(i);
+            ArrangeCharacterSelectorUIs(i, newSelectorCanvas);
         }
 	}
 
 
-    public void ArrangeCharacterSelectorUIs(int camIndex) {
-        float camPosX = 0;
-        float camPosY = 0;
-        float camWidth = 0.5f;
-        float camHeight = 0.5f;
+    public void ArrangeCharacterSelectorUIs(int canvasIndex, Canvas newCanvas) {
+        float newPosX = 0;
+        float newPosY = 0;
 
-        switch(camIndex) {
+        RectTransform newCanvasRect = newCanvas.GetComponent<RectTransform>();
+
+        // DEF STUFF – This changes the color of the test backgrounds
+        Image newBackground = newCanvas.transform.GetChild(0).GetComponent<Image>();
+
+        switch(canvasIndex) {
             case 0:
-                camPosX = 0.0f;
-                camPosY = 0.5f;
+                newBackground.color = ColorManager.KeyBlack20;
+                newPosX = -newCanvasRect.rect.width / 4;
+                newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 1:
-                camPosX = 0.5f;
-                camPosY = 0.5f;
+                newBackground.color = ColorManager.KeyBlack20;
+                newPosX = newCanvasRect.rect.width / 4;
+                newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 2:
-                camPosX = 0.0f;
-                camPosY = 0.0f;
+                newBackground.color = ColorManager.KeyBlack20;
+                newPosX = -newCanvasRect.rect.width / 4;
+                newPosY = -newCanvasRect.rect.height / 4;
                 break;
             case 3:
-                camPosX = 0.5f;
-                camPosY = 0.0f;
+                newBackground.color = ColorManager.KeyBlack20;
+                newPosX = newCanvasRect.rect.width / 4;
+                newPosY = -newCanvasRect.rect.height / 4;
                 break;
+        }
+
+        // Center camera of player 3 when only 3 players are in the game
+        if (GameSettings.ConnectedGamepads == 3) {
+            if (canvasIndex == 2) {
+                newPosX = 0;
+            }
         }
 
         if (GameSettings.ConnectedGamepads == 2) {
-            camPosY = 0.0f;
-            camHeight = 1.0f;
+            newPosY = 0;
+            newCanvas.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
         }
 
         if (GameSettings.ConnectedGamepads == 1) {
-            camPosX = 0.0f;
-            camPosY = 0.0f;
-            camWidth = 1.0f;
-            camHeight = 1.0f;
+            newPosX = 0;
+            newPosY = 0;
+            newCanvas.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
 
-        characterSelectionUI[camIndex].transform.GetChild(1).GetComponent<Camera>().rect = new Rect(camPosX, camPosY, camWidth, camHeight);
+        newCanvasRect.localPosition = new Vector3(newPosX, newPosY, 0);
     }
 
 }
