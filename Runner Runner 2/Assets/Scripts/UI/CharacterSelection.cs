@@ -46,30 +46,31 @@ public class CharacterSelection : MonoBehaviour {
         float newPosY = 0;
 
         Canvas newCanvas = characterSelectionUI[canvasIndex].transform.GetChild(0).GetComponent<Canvas>();
-
         RectTransform newCanvasRect = newCanvas.GetComponent<RectTransform>();
+
+        newCanvas.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
 
         // DEF STUFF – This changes the color of the test backgrounds
         Image newBackground = newCanvas.transform.GetChild(0).GetComponent<Image>();
 
         switch(canvasIndex) {
             case 0:
-                newBackground.color = ColorManager.TestRed;
+                newBackground.color = ColorManager.TestRed;         // DEF STUFF
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 1:
-                newBackground.color = ColorManager.TestYellow;
+                newBackground.color = ColorManager.TestYellow;      // DEF STUFF
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 2:
-                newBackground.color = ColorManager.TestGreen;
+                newBackground.color = ColorManager.TestGreen;       // DEF STUFF
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
                 break;
             case 3:
-                newBackground.color = ColorManager.TestBlue;
+                newBackground.color = ColorManager.TestBlue;        // DEF STUFF
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
                 break;

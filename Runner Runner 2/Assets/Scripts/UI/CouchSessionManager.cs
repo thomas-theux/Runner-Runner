@@ -138,7 +138,8 @@ public class CouchSessionManager : MonoBehaviour {
 
         lsHorizontal = ReInput.players.GetPlayer(0).GetAxis("LS Horizontal");
 
-        startButton = ReInput.players.GetPlayer(0).GetButtonDown("Options");
+        // startButton = ReInput.players.GetPlayer(0).GetButtonDown("Options");
+        startButton = ReInput.players.GetPlayer(0).GetButtonDown("X");
     }
 
 
