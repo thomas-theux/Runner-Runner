@@ -55,22 +55,22 @@ public class CharacterSelection : MonoBehaviour {
 
         switch(canvasIndex) {
             case 0:
-                newBackground.color = ColorManager.TestRed;         // DEF STUFF
+                newBackground.color = ColorManager.CharacterColors[0];         // DEF STUFF
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 1:
-                newBackground.color = ColorManager.TestYellow;      // DEF STUFF
+                newBackground.color = ColorManager.CharacterColors[1];      // DEF STUFF
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 2:
-                newBackground.color = ColorManager.TestGreen;       // DEF STUFF
+                newBackground.color = ColorManager.CharacterColors[2];       // DEF STUFF
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
                 break;
             case 3:
-                newBackground.color = ColorManager.TestBlue;        // DEF STUFF
+                newBackground.color = ColorManager.CharacterColors[3];        // DEF STUFF
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
                 break;
