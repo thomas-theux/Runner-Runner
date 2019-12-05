@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9202275386117556209}
   - component: {fileID: 9202275386117556173}
   m_Layer: 0
-  m_Name: SprintModeManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,6 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb20d059902d43cbb2f4fefa9fbbb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterSelectionScript: {fileID: 0}
+  GamepadIcons: []
 --- !u!114 &9202275386117556211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,8 +78,6 @@ MonoBehaviour:
   StartGO: {fileID: 2623223436388418492, guid: 12e7842faa0ee42c0b89eb544d16fc67, type: 3}
   FinishSprintGO: {fileID: 2623223436388418492, guid: a023a3afba47b46dfb58262c6c33ac00,
     type: 3}
-  FinishParkourGO: {fileID: 2623223436388418492, guid: 6ed593c42b916404b9b2b8aac85cf897,
-    type: 3}
 --- !u!114 &9202275386117556209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +92,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterGO: {fileID: 6020085720170289695, guid: af8c5397aa50a40849331c7e23f9332a,
     type: 3}
+  CharacterColors:
+  - {fileID: 2100000, guid: e32f326f404c84495aa1d60f0995bd61, type: 2}
+  - {fileID: 2100000, guid: 00d1aecce3b364d849269b619e34e83a, type: 2}
+  - {fileID: 2100000, guid: 82b12c72b00d84f67ba4e0ae87418ce7, type: 2}
+  - {fileID: 2100000, guid: 0bdb72e6e2e014d4f8f93cf3798a1376, type: 2}
 --- !u!114 &9202275386117556173
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerSheet : MonoBehaviour {
 
+    public GameObject CharacterHead;
+    public GameObject CharacterBody;
+
     public int playerID = 0;
     public bool isDead = false;
     public bool isRespawning = false;

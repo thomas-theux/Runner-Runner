@@ -7,6 +7,8 @@ public class CharacterSpawner : MonoBehaviour {
     public GameObject CharacterGO;
     private GameObject spawnGO;
 
+    public Material[] CharacterColors;
+
     private Camera characterCam;
 
 
@@ -17,6 +19,10 @@ public class CharacterSpawner : MonoBehaviour {
             GameObject newCharacter = Instantiate(CharacterGO);
             newCharacter.transform.position = spawnGO.transform.position;
             newCharacter.GetComponent<PlayerSheet>().playerID = i;
+
+            // Color head and body of character to according player color
+            newCharacter.GetComponent<PlayerSheet>().CharacterHead.GetComponent<Renderer>().material = CharacterColors[i];
+            newCharacter.GetComponent<PlayerSheet>().CharacterBody.GetComponent<Renderer>().material = CharacterColors[i];
 
             // Add newly spawned character to an AllPlayers array
             GameManager.AllPlayers.Add(newCharacter);

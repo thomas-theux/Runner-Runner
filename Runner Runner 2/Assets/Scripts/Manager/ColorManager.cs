@@ -13,22 +13,15 @@ public class ColorManager : MonoBehaviour {
     public static Color32 KeyYellow = new Color32(255, 255, 0, 255);
 
     public static List<Color32> CharacterColors = new List<Color32>(new Color32[] {
-        new Color32(255, 128, 0, 128),
-        new Color32(255, 255, 0, 128),
-        new Color32(0, 255, 128, 128),
-        new Color32(0, 128, 255, 128)
+        new Color32(0, 128, 255, 128),  // BLUE
+        new Color32(255, 128, 0, 128),  // RED
+        new Color32(0, 255, 128, 128),  // GREEN
+        new Color32(255, 255, 0, 128)   // YELLOW
     });
 
-    // public static List<Color32> CharacterColors = new List<Color32>(
-    //     new Color32(255, 128, 0, 128),
-    //     new Color32(255, 128, 0, 128),
-    //     new Color32(0, 255, 128, 128),
-    //     new Color32(0, 128, 255, 128)
-    // );
-
-    // public static Color32 CharacterRed = new Color32(255, 128, 0, 128);
-    // public static Color32 CharacterYellow = new Color32(255, 255, 0, 128);
-    // public static Color32 CharacterGreen = new Color32(0, 255, 128, 128);
     // public static Color32 CharacterBlue = new Color32(0, 128, 255, 128);
+    // public static Color32 CharacterRed = new Color32(255, 128, 0, 128);
+    // public static Color32 CharacterGreen = new Color32(0, 255, 128, 128);
+    // public static Color32 CharacterYellow = new Color32(255, 255, 0, 128);
 
 }

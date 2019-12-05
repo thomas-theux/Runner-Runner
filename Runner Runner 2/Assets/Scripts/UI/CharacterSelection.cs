@@ -21,18 +21,20 @@ public class CharacterSelection : MonoBehaviour {
 
 		// Instantiate player UIs
         for (int i = 0; i < GameSettings.ConnectedGamepads; i++) {
-            // GameObject newCharacterSelectorUI = Instantiate(CharacterSelectorGO);
-            // characterSelectionUI.Add(newCharacterSelectorUI);
-
-            // Canvas newSelectorCanvas = characterSelectionUI[i].transform.GetChild(0).GetComponent<Canvas>();
-
-            // Root new char sel UI (remove from camera parent GO)
-            // GameObject charSelUI = newCharacterSelectorUI.transform.GetChild(0).gameObject;
-            // charSelUI.transform.SetParent(charSelParentGO.transform);
-
             ArrangeCharacterSelectorUIs(i);
         }
 	}
+
+
+    private void OnDisable() {
+        MenuManager.CharacterSelectionOn = false;
+
+        for (int i = 0; i < characterSelectionUI.Count; i++) {
+            Destroy(characterSelectionUI[i].gameObject);
+        }
+
+        characterSelectionUI.Clear();
+    }
 
 
     public void ArrangeCharacterSelectorUIs(int canvasIndex) {
@@ -40,6 +42,9 @@ public class CharacterSelection : MonoBehaviour {
         if (characterSelectionUI.Count < GameSettings.ConnectedGamepads) {
             GameObject newCharacterSelectorUI = Instantiate(CharacterSelectorGO);
             characterSelectionUI.Add(newCharacterSelectorUI);
+
+            // Give instantiated interfaces their proper ID
+            newCharacterSelectorUI.GetComponent<SelectionInterface>().InterfaceID = canvasIndex;
         }
 
         float newPosX = 0;

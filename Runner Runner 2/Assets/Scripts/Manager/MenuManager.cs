@@ -32,6 +32,7 @@ public class MenuManager : MonoBehaviour {
     public static bool MainMenuOn = false;
     public static bool CouchSessionMenuOn = false;
     public static bool CharacterSelectionOn = false;
+    public static bool PlayerOneReady = false;
 
 
     private void Awake() {
@@ -146,25 +147,30 @@ public class MenuManager : MonoBehaviour {
 
         ///////////////////////////////////////////////////////////////////
 
-        if (interactBtn) {
-            AudioManager.instance.Play("SelectUI");
+        if (!PlayerOneReady) {
+            if (interactBtn) {
+                AudioManager.instance.Play("SelectUI");
 
-            if (overallMenuIndex == 0) {
-                overallMenuIndex = CurrentNavIndex + 1;
+                if (overallMenuIndex == 0) {
+                    overallMenuIndex = CurrentNavIndex + 1;
 
-                CurrentNavIndex = 0;
-                LoadNewMenu();
+                    CurrentNavIndex = 0;
+                    LoadNewMenu();
+                }
             }
-        }
 
-        if (cancelBtn) {
-            AudioManager.instance.Play("CancelUI");
+            if (cancelBtn) {
+                if (!CharacterSelectionOn) {
+                    AudioManager.instance.Play("CancelUI");
 
-            if (overallMenuIndex > 0) {
-                overallMenuIndex = 0;
+                    if (overallMenuIndex > 0) {
+                        overallMenuIndex = 0;
 
-                CurrentNavIndex = 0;
-                LoadNewMenu();
+                        CurrentNavIndex = 0;
+                        LoadNewMenu();
+                    }
+                }
+                
             }
         }
     }

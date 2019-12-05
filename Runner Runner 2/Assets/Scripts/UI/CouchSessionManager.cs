@@ -17,6 +17,8 @@ public class CouchSessionManager : MonoBehaviour {
     private List<int> optionsIndexes = new List<int>();
     private int[] maxOptionsIndexes = {2, 2, 0, 4};
 
+    public static int PlayerReadyStatus = 0;
+
 	private float maxThreshold = 0.5f;
     private bool axisXActive;
 
@@ -90,6 +92,8 @@ public class CouchSessionManager : MonoBehaviour {
 
     private float lsHorizontal = 0.0f;
 
+    private bool continueButton = false;
+    private bool cancelButton = false;
     private bool startButton = false;
 
 
@@ -138,8 +142,9 @@ public class CouchSessionManager : MonoBehaviour {
 
         lsHorizontal = ReInput.players.GetPlayer(0).GetAxis("LS Horizontal");
 
-        // startButton = ReInput.players.GetPlayer(0).GetButtonDown("Options");
-        startButton = ReInput.players.GetPlayer(0).GetButtonDown("X");
+        continueButton = ReInput.players.GetPlayer(0).GetButtonDown("X");
+        cancelButton = ReInput.players.GetPlayer(0).GetButtonDown("Circle");
+        startButton = ReInput.players.GetPlayer(0).GetButtonDown("Options");
     }
 
 
@@ -225,27 +230,44 @@ public class CouchSessionManager : MonoBehaviour {
 
         ///////////////////////////////////////////////////////////////////
 
-        if (startButton) {
+        if (continueButton) {
             LevelSetupGO.SetActive(false);
             CharacterSelectionGO.SetActive(true);
+        }
 
-            // AudioManager.instance.Play("StartRunUI");
+        if (MenuManager.CharacterSelectionOn) {
+            if (cancelButton && !MenuManager.PlayerOneReady) {
+                CharacterSelectionGO.SetActive(false);
+                LevelSetupGO.SetActive(true);
+            }
+        }
 
-            // GameSettings.SelectedGameMode = optionsIndexes[0];
-            // GameSettings.SelectedLevelType = optionsIndexes[1];
+        if (PlayerReadyStatus == GameSettings.ConnectedGamepads) {
+            if (startButton) {
+                if (MenuManager.CharacterSelectionOn) {
+                    AudioManager.instance.Play("StartRunUI");
 
-            // string selectedScene = "";
+                    GameSettings.SelectedGameMode = optionsIndexes[0];
+                    GameSettings.SelectedLevelType = optionsIndexes[1];
 
-            // if (optionsIndexes[1] == 0) {
-            //     GameSettings.SelectedLevelSize = levelLengthInts[optionsIndexes[2]];
-            //     selectedScene = "Platforms";
-            // } else {
-            //     selectedScene = levelSelectTexts[optionsIndexes[2]];
-            // }
+                    string selectedScene = "";
 
-            // GameSettings.LevelDuration = levelTimeInts[optionsIndexes[3]];
+                    if (optionsIndexes[1] == 0) {
+                        GameSettings.SelectedLevelSize = levelLengthInts[optionsIndexes[2]];
+                        selectedScene = "Platforms";
+                    } else {
+                        selectedScene = levelSelectTexts[optionsIndexes[2]];
+                    }
 
-            // SceneManager.LoadScene(selectedScene);
+                    GameSettings.LevelDuration = levelTimeInts[optionsIndexes[3]];
+
+                    MenuManager.MainMenuOn = false;
+                    MenuManager.CouchSessionMenuOn = false;
+                    MenuManager.CharacterSelectionOn = false;
+
+                    SceneManager.LoadScene(selectedScene);
+                }
+            }
         }
     }
 
