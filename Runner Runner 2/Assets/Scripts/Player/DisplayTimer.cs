@@ -60,7 +60,7 @@ public class DisplayTimer : MonoBehaviour {
         }
 
         if (TimeManager.TimerIndex == 3) {
-            LevelTimer.fontSize = 140;
+            // LevelTimer.fontSize = 140;
             LevelTimer.color = ColorManager.KeyRed;
         }
     }

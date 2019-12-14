@@ -35,6 +35,18 @@ public class CharacterLifeHandler : MonoBehaviour {
 
 
     public void KillCharacter(bool didFinish) {
+        StartCoroutine(KillDelay(didFinish));
+    }
+
+
+    private IEnumerator KillDelay(bool didFinish) {
+        yield return new WaitForSeconds(0.1f);
+
+        DisableCharacter(didFinish);
+    }
+
+
+    private void DisableCharacter(bool didFinish) {
         this.playerSheetScript.isDead = true;
         this.rb.isKinematic = true;
 
@@ -64,6 +76,8 @@ public class CharacterLifeHandler : MonoBehaviour {
             this.playerSheetScript.isDead = false;
             this.rb.isKinematic = false;
             this.characterModel.SetActive(true);
+
+            this.playerSheetScript.groundToRespawn = true;
 
             // Reset current run timer when dying or resetting
             DisplayTimerScript.CurrentRunTimes = 0;

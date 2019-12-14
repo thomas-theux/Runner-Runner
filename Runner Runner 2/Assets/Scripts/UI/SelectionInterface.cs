@@ -9,7 +9,9 @@ public class SelectionInterface : MonoBehaviour {
 
     public GameObject ReadyTagGO;
     public GameObject ReadyTextGO;
+
     private Image readyTagIMG;
+    public Image DudeIMG;
 
     public int InterfaceID = 0;
 

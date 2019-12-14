@@ -11,6 +11,8 @@ public class PlayerSheet : MonoBehaviour {
     public bool isDead = false;
     public bool isRespawning = false;
 
+    public bool groundToRespawn = false;
+
     public float BestRunTime = 99999;
 
 

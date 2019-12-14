@@ -734,7 +734,15 @@ namespace ECM.Controllers
                 UpdateRotation();
 
                 // Perform character animation
+                if (!animator.enabled) {
+                    animator.enabled = true;
+                }
                 Animate();
+
+            } else if (PlayerSheetScript.isDead) {
+                if (animator.enabled) {
+                    animator.enabled = false;
+                }
             }
         }
 

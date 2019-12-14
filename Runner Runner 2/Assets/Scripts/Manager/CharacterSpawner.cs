@@ -52,6 +52,8 @@ public class CharacterSpawner : MonoBehaviour {
             case 2:
                 camPosX = 0.0f;
                 camPosY = 0.0f;
+
+                if (GameSettings.PlayerCount == 3) { camPosX = 0.25f; }
                 break;
             case 3:
                 camPosX = 0.5f;

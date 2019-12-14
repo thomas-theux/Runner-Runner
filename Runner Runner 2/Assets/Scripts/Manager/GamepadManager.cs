@@ -24,8 +24,8 @@ public class GamepadManager : MonoBehaviour {
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
 		// DEV STUFF
-		// GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
-		GameSettings.ConnectedGamepads = 1;
+		GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
+		// GameSettings.ConnectedGamepads = 1;
 
 		GameSettings.PlayerCount = GameSettings.ConnectedGamepads;
 	}
@@ -43,25 +43,12 @@ public class GamepadManager : MonoBehaviour {
 
 
 	private void AddPlayerUI() {
-		for (int i = 0; i < GameSettings.ConnectedGamepads; i++) {
-			CharacterSelectionScript.ArrangeCharacterSelectorUIs(i);
-		}
 
-		// switch(GameSettings.ConnectedGamepads) {
-		// 	case 0:
-		// 		// Kein Controller ist connected
-		// 		print("no controller connected");
-		// 		break;
-		// 	case 1:
-		// 		print("1 controller connected");
-		// 		break;
-		// 	case 2:
-		// 		print("2 controller connected");
-		// 		break;
-		// 	case 3:
-		// 		print("3 controller connected");
-		// 		break;
-		// }
+		CharacterSelectionScript.InstantiateUI(GameSettings.ConnectedGamepads - 1);
+
+		for (int i = 0; i < GameSettings.ConnectedGamepads; i++) {
+            CharacterSelectionScript.ArrangeCharacterSelectorUIs(i);
+        }
 	}
 
 

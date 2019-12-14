@@ -6,9 +6,7 @@ public class ReachedFinish : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Character") {
-
             switch (GameSettings.SelectedGameMode) {
-
                 // Sprint
                 case 0:
                     SprintFinish(other);

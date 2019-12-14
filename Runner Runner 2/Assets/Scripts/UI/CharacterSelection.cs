@@ -21,7 +21,11 @@ public class CharacterSelection : MonoBehaviour {
 
 		// Instantiate player UIs
         for (int i = 0; i < GameSettings.ConnectedGamepads; i++) {
-            ArrangeCharacterSelectorUIs(i);
+            InstantiateUI(i);
+        }
+
+        for (int j = 0; j < GameSettings.ConnectedGamepads; j++) {
+            ArrangeCharacterSelectorUIs(j);
         }
 	}
 
@@ -37,18 +41,27 @@ public class CharacterSelection : MonoBehaviour {
     }
 
 
-    public void ArrangeCharacterSelectorUIs(int canvasIndex) {
-
+    public void InstantiateUI(int canvasIndex) {
         if (characterSelectionUI.Count < GameSettings.ConnectedGamepads) {
             GameObject newCharacterSelectorUI = Instantiate(CharacterSelectorGO);
             characterSelectionUI.Add(newCharacterSelectorUI);
 
             // Give instantiated interfaces their proper ID
             newCharacterSelectorUI.GetComponent<SelectionInterface>().InterfaceID = canvasIndex;
+
+            // Color the dude
+            newCharacterSelectorUI.GetComponent<SelectionInterface>().DudeIMG.color = ColorManager.CharacterColors[canvasIndex];
         }
+    }
+
+
+    public void ArrangeCharacterSelectorUIs(int canvasIndex) {
 
         float newPosX = 0;
         float newPosY = 0;
+
+        // print(canvasIndex);
+        // print("hängt bei " + characterSelectionUI[canvasIndex]);
 
         Canvas newCanvas = characterSelectionUI[canvasIndex].transform.GetChild(0).GetComponent<Canvas>();
         RectTransform newCanvasRect = newCanvas.GetComponent<RectTransform>();
@@ -56,26 +69,26 @@ public class CharacterSelection : MonoBehaviour {
         newCanvas.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
 
         // DEF STUFF – This changes the color of the test backgrounds
-        Image newBackground = newCanvas.transform.GetChild(0).GetComponent<Image>();
+        // Image newBackground = newCanvas.transform.GetChild(0).GetComponent<Image>();
 
         switch(canvasIndex) {
             case 0:
-                newBackground.color = ColorManager.CharacterColors[0];         // DEF STUFF
+                // newBackground.color = ColorManager.CharacterColors[0];      // DEF STUFF
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 1:
-                newBackground.color = ColorManager.CharacterColors[1];      // DEF STUFF
+                // newBackground.color = ColorManager.CharacterColors[1];      // DEF STUFF
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
                 break;
             case 2:
-                newBackground.color = ColorManager.CharacterColors[2];       // DEF STUFF
+                // newBackground.color = ColorManager.CharacterColors[2];      // DEF STUFF
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
                 break;
             case 3:
-                newBackground.color = ColorManager.CharacterColors[3];        // DEF STUFF
+                // newBackground.color = ColorManager.CharacterColors[3];      // DEF STUFF
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
                 break;
