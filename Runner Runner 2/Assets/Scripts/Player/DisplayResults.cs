@@ -107,7 +107,7 @@ public class DisplayResults : MonoBehaviour {
     private void CheckRankings() {
         rankingsText.fontSize = FontManager.FontH3;
         rankingsText.text = "Y'all suck!";
-        bestTimeText.text = "No-one finished..";
+        bestTimeText.text = "No Finisher";
     }
 
 }

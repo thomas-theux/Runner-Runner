@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour {
 
     private int overallMenuIndex = 0;
     public int CurrentNavIndex = 0;
+    private int mainNavIndexSaveState;
 
 	private float maxThreshold = 0.5f;
     private bool axisYActive;
@@ -154,6 +155,8 @@ public class MenuManager : MonoBehaviour {
                 if (overallMenuIndex == 0) {
                     overallMenuIndex = CurrentNavIndex + 1;
 
+                    mainNavIndexSaveState = CurrentNavIndex;
+
                     CurrentNavIndex = 0;
                     LoadNewMenu();
                 }
@@ -166,11 +169,11 @@ public class MenuManager : MonoBehaviour {
                     if (overallMenuIndex > 0) {
                         overallMenuIndex = 0;
 
-                        CurrentNavIndex = 0;
+                        CurrentNavIndex = mainNavIndexSaveState;
                         LoadNewMenu();
                     }
                 }
-                
+
             }
         }
     }

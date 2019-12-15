@@ -13,6 +13,9 @@ public class DisplayTimer : MonoBehaviour {
     public TMP_Text PlayerRank;
     public TMP_Text CurrentRunTimer;
 
+    public GameObject StartTimerGO;
+    public GameObject LevelTimerGO;
+
     public float CurrentRunTimes = 0f;
 
     private float levelCountdown;
@@ -46,6 +49,8 @@ public class DisplayTimer : MonoBehaviour {
 
     private void DisplayTimers() {
         if (TimeManager.TimerIndex == 1) {
+            // Display start time label
+            if (!StartTimerGO.activeSelf) { StartTimerGO.SetActive(true); }
             StartTimer.text = Mathf.Floor(TimeManager.CurrentTime) + "";
         }
 
@@ -53,6 +58,10 @@ public class DisplayTimer : MonoBehaviour {
             if (!PlayerSheetScript.isDead && !PlayerSheetScript.isRespawning) {
                 CurrentRunTimes += Time.deltaTime;
             }
+
+            // Display level time label & disable start time label
+            if (StartTimerGO.activeSelf) { StartTimerGO.SetActive(false); }
+            if (!LevelTimerGO.activeSelf) {  LevelTimerGO.SetActive(true); }
 
             StartTimer.text = "";
             LevelTimer.text = FormatLevelTime(CurrentRunTimes);
@@ -72,11 +81,13 @@ public class DisplayTimer : MonoBehaviour {
         }
 
         levelCountdown -= Time.deltaTime * GameSettings.InitialCountdownMultiplier;
+        if (!StartTimerGO.activeSelf) { StartTimerGO.SetActive(true); }
         StartTimer.text = Mathf.Floor(levelCountdown) + "";
 
         if (levelCountdown <= 1.0f) {
             isTicking = false;
             PlayerSheetScript.isRespawning = false;
+            if (StartTimerGO.activeSelf) { StartTimerGO.SetActive(false); }
             StartTimer.text = "";
             AudioManager.instance.Play("LevelStart");
         }

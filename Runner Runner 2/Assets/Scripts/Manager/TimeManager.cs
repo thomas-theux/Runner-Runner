@@ -193,7 +193,7 @@ public class TimeManager : MonoBehaviour {
     private void QuitLevel() {
         AudioManager.instance.Play("EndRunUI");
 
-        ResetVariables();
+        ResetAllVariables();
 
         SceneManager.LoadScene("1 Main Menu");
     }
@@ -218,6 +218,39 @@ public class TimeManager : MonoBehaviour {
 
     private void ResetVariables() {
         GameManager.AllPlayers.Clear();
+        GameManager.RankingsArr.Clear();
+
+        TimerIndex = 0;
+        LevelEnd = false;
+        PlayersBestTimesArr.Clear();
+        SortedBestTimesArr.Clear();
+        IsShowingResults = false;
+        isTicking = false;
+    }
+
+
+    private void ResetAllVariables() {
+        GameManager.AllPlayers.Clear();
+        GameManager.RankingsArr.Clear();
+
+        GameSettings.PlayerCount = 0;
+        GameSettings.SelectedGameMode = 1;
+        GameSettings.SelectedLevelType = 0;
+        GameSettings.SelectedLevelSize = 1;
+
+        CouchSessionManager.PlayerReadyStatus = 0;
+
+        TimerIndex = 0;
+        LevelEnd = false;
+        PlayersBestTimesArr.Clear();
+        SortedBestTimesArr.Clear();
+        IsShowingResults = false;
+        isTicking = false;
+
+        MenuManager.MainMenuOn = false;
+        MenuManager.CouchSessionMenuOn = false;
+        MenuManager.CharacterSelectionOn = false;
+        MenuManager.PlayerOneReady = false;
     }
 
 }
