@@ -99,6 +99,11 @@ namespace ECM.Controllers
 
         private bool reset = false;
 
+        public bool doubleJump = false;
+        private bool triggerTimer = false;
+        private float doubleJumpResetTimer = 0;
+        private float doubleJumpResetTimerDef = 0.5f;
+
         public Animator anim;
         // END
 
@@ -510,6 +515,10 @@ namespace ECM.Controllers
             _isJumping = true;          // Update isJumping flag
             _updateJumpTimer = true;    // Allow mid-air jump to be variable height
 
+            // OWN CODE
+            doubleJump = true;          // Is double jumping
+            triggerTimer = true;
+
             // Apply jump impulse
 
             movement.ApplyVerticalImpulse(jumpImpulse);
@@ -618,6 +627,7 @@ namespace ECM.Controllers
             anim.SetFloat("CharSpeed", (Mathf.Abs(ReInput.players.GetPlayer(PlayerSheetScript.playerID).GetAxis("LS Horizontal")) + Mathf.Abs(ReInput.players.GetPlayer(PlayerSheetScript.playerID).GetAxis("LS Vertical"))));
             anim.SetBool("IsGrounded", isGrounded);
             anim.SetBool("IsJumping", jump);
+            anim.SetBool("IsDoubleJumping", doubleJump);
         }
 
         /// <summary>
@@ -733,6 +743,11 @@ namespace ECM.Controllers
                 // Update character rotation
                 UpdateRotation();
 
+                // Reset double jump
+                if (doubleJump) {
+                    ResetDoubleJump();
+                }
+
                 // Perform character animation
                 if (!animator.enabled) {
                     animator.enabled = true;
@@ -751,6 +766,21 @@ namespace ECM.Controllers
             if (reset) {
                 // AudioManager.instance.Play("ResetCharacter");
                 CharacterLifeHandlerScript.KillCharacter(false);
+            }
+        }
+
+
+        private void ResetDoubleJump() {
+            if (triggerTimer) {
+                doubleJumpResetTimer = doubleJumpResetTimerDef;
+                triggerTimer = false;
+            }
+
+            doubleJumpResetTimer -= Time.deltaTime;
+
+            if (doubleJumpResetTimer <= 0) {
+                doubleJump = false;
+                print("reset");
             }
         }
 

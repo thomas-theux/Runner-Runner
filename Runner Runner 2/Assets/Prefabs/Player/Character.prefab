@@ -1752,6 +1752,7 @@ MonoBehaviour:
   _jumpToleranceTime: 0.5
   _maxMidAirJumps: 1
   _useRootMotion: 0
+  doubleJump: 0
   anim: {fileID: 4180045706690004117}
 --- !u!1 &6020085720398055418
 GameObject:
@@ -2497,6 +2498,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Head
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 8fe41dfa50afd43df950a0ceba628c83,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a15163733f1024bb499af9ab9651a33a, type: 2}
     - target: {fileID: -4216859302048453862, guid: 8fe41dfa50afd43df950a0ceba628c83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2567,11 +2573,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.75
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 8fe41dfa50afd43df950a0ceba628c83,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: a15163733f1024bb499af9ab9651a33a, type: 2}
     - target: {fileID: 8425787374007640312, guid: 8fe41dfa50afd43df950a0ceba628c83,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
