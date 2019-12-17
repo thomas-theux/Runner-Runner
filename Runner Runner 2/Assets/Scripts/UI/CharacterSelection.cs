@@ -8,6 +8,8 @@ public class CharacterSelection : MonoBehaviour {
     public GameObject CharacterSelectorGO;
     private GameObject charSelParentGO;
 
+    public GameObject BlueishBG;
+
     public List<GameObject> characterSelectionUI = new List<GameObject>();
 
 
@@ -17,6 +19,8 @@ public class CharacterSelection : MonoBehaviour {
 
 
     private void OnEnable() {
+        BlueishBG.SetActive(false);
+
         MenuManager.CharacterSelectionOn = true;
 
 		// Instantiate player UIs
@@ -31,6 +35,8 @@ public class CharacterSelection : MonoBehaviour {
 
 
     private void OnDisable() {
+        BlueishBG.SetActive(true);
+
         MenuManager.CharacterSelectionOn = false;
 
         for (int i = 0; i < characterSelectionUI.Count; i++) {
