@@ -103,7 +103,8 @@ public class CharacterSelection : MonoBehaviour {
 
         if (GameSettings.ConnectedGamepads == 2) {
             newPosY = 0;
-            newCanvas.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
+            newCanvas.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            newCanvasRect.sizeDelta = new Vector2(newCanvasRect.rect.width / 2, newCanvasRect.sizeDelta.y);
         }
 
         if (GameSettings.ConnectedGamepads == 1) {

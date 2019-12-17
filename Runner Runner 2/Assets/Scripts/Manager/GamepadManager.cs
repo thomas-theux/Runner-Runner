@@ -24,8 +24,8 @@ public class GamepadManager : MonoBehaviour {
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
 		// DEV STUFF
-		GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
-		// GameSettings.ConnectedGamepads = 1;
+		// GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
+		GameSettings.ConnectedGamepads = 2;
 
 		GameSettings.PlayerCount = GameSettings.ConnectedGamepads;
 	}

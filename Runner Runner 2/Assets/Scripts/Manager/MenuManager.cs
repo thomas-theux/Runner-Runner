@@ -9,6 +9,15 @@ public class MenuManager : MonoBehaviour {
 
     public GameObject[] AllMenus;
 
+    // Disabled Menus:
+    // 0 Career Mode
+    // 1 Couch Session
+    // 2 Stats
+    // 3 Options
+    // 4 Credits
+    private List<int> disabledMenus = new List<int>{0, 2, 3};
+    private List<int> menusWithNoSubMenu = new List<int>{4};
+
     public GameObject NavigationContainer;
     public List<GameObject> MenuItemsArr = new List<GameObject>();
 
@@ -52,7 +61,11 @@ public class MenuManager : MonoBehaviour {
     private void LoadNewMenu() {
         UpdateMenuItemsArr();
         DisplayRightMenu();
-        UpdateNavStates();
+
+        // Some menus don't have a sub menu (like credits) and don't need to be navigatible
+        if (!menusWithNoSubMenu.Contains(mainNavIndexSaveState)) {
+            UpdateNavStates();
+        }
     }
 
 
@@ -150,16 +163,25 @@ public class MenuManager : MonoBehaviour {
 
         if (!PlayerOneReady) {
             if (interactBtn) {
-                AudioManager.instance.Play("SelectUI");
 
-                if (overallMenuIndex == 0) {
-                    overallMenuIndex = CurrentNavIndex + 1;
+                // Disabled Menus are not selectable
+                if (!disabledMenus.Contains(CurrentNavIndex)) {
+                    // Enter/open menu
+                    AudioManager.instance.Play("SelectUI");
 
-                    mainNavIndexSaveState = CurrentNavIndex;
+                    if (overallMenuIndex == 0) {
+                        overallMenuIndex = CurrentNavIndex + 1;
 
-                    CurrentNavIndex = 0;
-                    LoadNewMenu();
+                        mainNavIndexSaveState = CurrentNavIndex;
+
+                        CurrentNavIndex = 0;
+                        LoadNewMenu();
+                    }
+                } else {
+                    // Do nothing
+                    AudioManager.instance.Play("CancelUI");
                 }
+                
             }
 
             if (cancelBtn) {
