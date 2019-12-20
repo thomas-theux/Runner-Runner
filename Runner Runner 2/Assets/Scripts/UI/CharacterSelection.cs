@@ -12,6 +12,9 @@ public class CharacterSelection : MonoBehaviour {
 
     public List<GameObject> characterSelectionUI = new List<GameObject>();
 
+    private int rectWidthSubtract = 0;
+    private int rectHeightSubtract = 0;
+
 
     private void Awake() {
         charSelParentGO = this.gameObject;
@@ -69,34 +72,75 @@ public class CharacterSelection : MonoBehaviour {
         // print(canvasIndex);
         // print("hängt bei " + characterSelectionUI[canvasIndex]);
 
-        Canvas newCanvas = characterSelectionUI[canvasIndex].transform.GetChild(0).GetComponent<Canvas>();
+        Canvas newCanvas = characterSelectionUI[canvasIndex].transform.GetChild(0).transform.GetChild(0).GetComponent<Canvas>();
         RectTransform newCanvasRect = newCanvas.GetComponent<RectTransform>();
 
         newCanvas.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
 
-        // DEF STUFF – This changes the color of the test backgrounds
-        // Image newBackground = newCanvas.transform.GetChild(0).GetComponent<Image>();
+        // Transform child canvas rect
+        RectTransform newSelectorRect = newCanvas.GetComponent<RectTransform>();
+
+        // Setting the size of the selector interface
+        switch (GameSettings.ConnectedGamepads) {
+            case 1:
+                rectWidthSubtract = 40;
+                rectHeightSubtract = 100;
+                break;
+            case 2:
+                rectWidthSubtract = 50;
+                rectHeightSubtract = 100;
+                break;
+            case 3:
+                rectWidthSubtract = 50;
+                rectHeightSubtract = 110;
+                break;
+            case 4:
+                rectWidthSubtract = 50;
+                rectHeightSubtract = 110;
+                break;
+        }
+
+        newSelectorRect.sizeDelta = new Vector2(
+            newSelectorRect.rect.width - rectWidthSubtract,
+            newSelectorRect.rect.height - rectHeightSubtract
+        );
 
         switch(canvasIndex) {
             case 0:
                 // newBackground.color = ColorManager.CharacterColors[0];      // DEF STUFF
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
+
+                newSelectorRect.anchorMin = new Vector2(0, 1);
+                newSelectorRect.anchorMax = new Vector2(0, 1);
+                newSelectorRect.pivot = new Vector2(0, 1);
                 break;
             case 1:
                 // newBackground.color = ColorManager.CharacterColors[1];      // DEF STUFF
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = newCanvasRect.rect.height / 4;
+
+                newSelectorRect.anchorMin = new Vector2(1, 1);
+                newSelectorRect.anchorMax = new Vector2(1, 1);
+                newSelectorRect.pivot = new Vector2(1, 1);
                 break;
             case 2:
                 // newBackground.color = ColorManager.CharacterColors[2];      // DEF STUFF
                 newPosX = -newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
+
+                newSelectorRect.anchorMin = new Vector2(0, 0);
+                newSelectorRect.anchorMax = new Vector2(0, 0);
+                newSelectorRect.pivot = new Vector2(0, 0);
                 break;
             case 3:
                 // newBackground.color = ColorManager.CharacterColors[3];      // DEF STUFF
                 newPosX = newCanvasRect.rect.width / 4;
                 newPosY = -newCanvasRect.rect.height / 4;
+
+                newSelectorRect.anchorMin = new Vector2(1, 0);
+                newSelectorRect.anchorMax = new Vector2(1, 0);
+                newSelectorRect.pivot = new Vector2(1, 0);
                 break;
         }
 
@@ -120,7 +164,7 @@ public class CharacterSelection : MonoBehaviour {
         }
 
         newCanvasRect.localPosition = new Vector3(newPosX, newPosY, 0);
-
+        newSelectorRect.anchoredPosition = new Vector3(0, 0, 0);
     }
 
 }

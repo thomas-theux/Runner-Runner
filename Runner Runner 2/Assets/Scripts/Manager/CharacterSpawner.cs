@@ -53,7 +53,8 @@ public class CharacterSpawner : MonoBehaviour {
                 camPosX = 0.0f;
                 camPosY = 0.0f;
 
-                if (GameSettings.PlayerCount == 3) { camPosX = 0.25f; }
+                // Display the 3rd player camera in the bottom center (3 players only)
+                // if (GameSettings.PlayerCount == 3) { camPosX = 0.25f; }
                 break;
             case 3:
                 camPosX = 0.5f;
