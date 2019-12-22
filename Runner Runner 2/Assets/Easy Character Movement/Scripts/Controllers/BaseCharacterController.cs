@@ -772,6 +772,7 @@ namespace ECM.Controllers
 
         private void ResetDoubleJump() {
             if (triggerTimer) {
+                AudioManager.instance.PlayRandom("DoubleJump", 0.9f, 1.1f);
                 doubleJumpResetTimer = doubleJumpResetTimerDef;
                 triggerTimer = false;
             }
@@ -780,7 +781,6 @@ namespace ECM.Controllers
 
             if (doubleJumpResetTimer <= 0) {
                 doubleJump = false;
-                print("reset");
             }
         }
 

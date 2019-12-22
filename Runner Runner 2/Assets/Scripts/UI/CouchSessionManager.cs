@@ -242,7 +242,7 @@ public class CouchSessionManager : MonoBehaviour {
             }
         }
 
-        if (PlayerReadyStatus == GameSettings.ConnectedGamepads) {
+        // if (PlayerReadyStatus == GameSettings.ConnectedGamepads) {
             if (startButton) {
                 if (MenuManager.CharacterSelectionOn) {
                     AudioManager.instance.Play("StartRunUI");
@@ -268,7 +268,7 @@ public class CouchSessionManager : MonoBehaviour {
                     SceneManager.LoadScene(selectedScene);
                 }
             }
-        }
+        // }
     }
 
 

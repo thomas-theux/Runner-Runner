@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9202275386117556210}
   - component: {fileID: 9202275386117556208}
   - component: {fileID: 9202275386117556175}
+  - component: {fileID: 4518231463918792994}
   - component: {fileID: 9202275386117556211}
   - component: {fileID: 9202275386117556209}
   - component: {fileID: 9202275386117556173}
@@ -61,6 +62,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterSelectionScript: {fileID: 0}
   GamepadIcons: []
+--- !u!114 &4518231463918792994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9202275386117556212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37223912a17a48939eb94350205b77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PolaroidBG: {fileID: 2319473094046714366, guid: 5513b043405004a9db14aa7f8ec8297a,
+    type: 3}
 --- !u!114 &9202275386117556211
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -129,6 +129,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: DoubleJump
+    clip: {fileID: 8300000, guid: 2b0893d5c33a94b0a973094279cbb74c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!114 &6350122900063803881
 MonoBehaviour:
   m_ObjectHideFlags: 0

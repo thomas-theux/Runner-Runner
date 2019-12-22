@@ -12,8 +12,8 @@ public class CharacterSelection : MonoBehaviour {
 
     public List<GameObject> characterSelectionUI = new List<GameObject>();
 
-    private int rectWidthSubtract = 0;
-    private int rectHeightSubtract = 0;
+    private float rectWidthSubtract = 0;
+    private float rectHeightSubtract = 0;
 
 
     private void Awake() {
@@ -38,7 +38,7 @@ public class CharacterSelection : MonoBehaviour {
 
 
     private void OnDisable() {
-        BlueishBG.SetActive(true);
+        // BlueishBG.SetActive(true);
 
         MenuManager.CharacterSelectionOn = false;
 
@@ -53,6 +53,8 @@ public class CharacterSelection : MonoBehaviour {
     public void InstantiateUI(int canvasIndex) {
         if (characterSelectionUI.Count < GameSettings.ConnectedGamepads) {
             GameObject newCharacterSelectorUI = Instantiate(CharacterSelectorGO);
+            newCharacterSelectorUI.transform.SetParent(charSelParentGO.transform);
+
             characterSelectionUI.Add(newCharacterSelectorUI);
 
             // Give instantiated interfaces their proper ID
