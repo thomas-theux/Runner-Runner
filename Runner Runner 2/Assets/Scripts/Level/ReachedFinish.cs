@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ReachedFinish : MonoBehaviour {
 
+    private TimeManager timeManagerScript;
+
+
+    private void Awake() {
+        timeManagerScript = GameObject.Find("GameManager").GetComponent<TimeManager>();
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Character") {
             switch (GameSettings.SelectedGameMode) {
@@ -28,7 +35,7 @@ public class ReachedFinish : MonoBehaviour {
 
         CheckForBestTime(other);
 
-        TimeManager.RundEnds();
+        timeManagerScript.RunEnds();
     }
 
 

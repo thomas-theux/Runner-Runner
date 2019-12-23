@@ -108,7 +108,7 @@ public class TimeManager : MonoBehaviour {
         CurrentTime = lastSeconds;
 
         if (lastSeconds <= 1.0f) {
-            RundEnds();
+            RunEnds();
         }
     }
 
@@ -135,8 +135,10 @@ public class TimeManager : MonoBehaviour {
     }
 
 
-    public static void RundEnds() {
+    public void RunEnds() {
         AudioManager.instance.Play("LevelEnd");
+
+        this.GetComponent<BGSpawner>().ButtonsContainer.SetActive(true);
 
         LevelEnd = true;
         TimerIndex = 0;
