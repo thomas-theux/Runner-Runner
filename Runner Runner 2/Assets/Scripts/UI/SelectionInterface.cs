@@ -22,6 +22,7 @@ public class SelectionInterface : MonoBehaviour {
     private float decreaseSpeed = 4.0f;
 
     private bool inputEnabled = false;
+    private bool readyButtonPressed = false;
 
     // REWIRED
     private bool readyButton = false;
@@ -63,6 +64,11 @@ public class SelectionInterface : MonoBehaviour {
     private void SetStatus() {
         if (!characterIsReady) {
             if (readyButton) {
+                if (!readyButtonPressed) {
+                    readyButtonPressed = true;
+                    AudioManager.instance.Play("SelectUI");
+                }
+
                 if (readyFloat < 100) {
                     readyFloat += increaseSpeed;
                     readyTagIMG.fillAmount = readyFloat / 100;
@@ -70,6 +76,10 @@ public class SelectionInterface : MonoBehaviour {
                     ActivateReadyStatus();
                 }
             } else {
+                if (readyButtonPressed) {
+                    readyButtonPressed = false;
+                }
+
                 if (readyFloat > 0) {
                     readyFloat -= decreaseSpeed;
                     readyTagIMG.fillAmount = readyFloat / 100;
@@ -79,8 +89,9 @@ public class SelectionInterface : MonoBehaviour {
             }
         } else {
             if (cancelButton) {
+                AudioManager.instance.Play("CancelUI");
+
                 characterIsReady = false;
-                // ReadyTagGO.SetActive(characterIsReady);
                 ReadyTextGO.SetActive(false);
 
                 CouchSessionManager.PlayerReadyStatus--;
@@ -94,8 +105,9 @@ public class SelectionInterface : MonoBehaviour {
 
 
     private void ActivateReadyStatus() {
+        AudioManager.instance.Play("ActivateReadyStatus");
+
         characterIsReady = true;
-        // ReadyTagGO.SetActive(characterIsReady);
         ReadyTextGO.SetActive(true);
 
         CouchSessionManager.PlayerReadyStatus++;
