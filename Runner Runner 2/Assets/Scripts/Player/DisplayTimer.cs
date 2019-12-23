@@ -15,6 +15,9 @@ public class DisplayTimer : MonoBehaviour {
 
     public GameObject StartTimerGO;
     public GameObject LevelTimerGO;
+    public GameObject BestTimeGO;
+    public GameObject PlayerRankGO;
+    public GameObject CurrentRunTimerGO;
 
     public float CurrentRunTimes = 0f;
 
@@ -61,7 +64,10 @@ public class DisplayTimer : MonoBehaviour {
 
             // Display level time label & disable start time label
             if (StartTimerGO.activeSelf) { StartTimerGO.SetActive(false); }
-            if (!LevelTimerGO.activeSelf) {  LevelTimerGO.SetActive(true); }
+            if (!LevelTimerGO.activeSelf) { LevelTimerGO.SetActive(true); }
+            if (!CurrentRunTimerGO.activeSelf) { CurrentRunTimerGO.SetActive(true); }
+            if (!BestTimeGO.activeSelf) { BestTimeGO.SetActive(true); }
+            if (!PlayerRankGO.activeSelf) { PlayerRankGO.SetActive(true); }
 
             StartTimer.text = "";
             LevelTimer.text = FormatLevelTime(CurrentRunTimes);
