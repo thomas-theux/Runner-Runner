@@ -163,7 +163,6 @@ public class MenuManager : MonoBehaviour {
 
         if (!PlayerOneReady) {
             if (interactBtn) {
-
                 // Disabled Menus are not selectable
                 if (!disabledMenus.Contains(CurrentNavIndex)) {
                     // Enter/open menu
@@ -179,15 +178,15 @@ public class MenuManager : MonoBehaviour {
                     }
                 } else {
                     // Do nothing
-                    AudioManager.instance.Play("CancelUI");
+                    AudioManager.instance.Play("SelectUI");
                 }
-                
+
             }
 
             if (cancelBtn) {
-                if (!CharacterSelectionOn) {
-                    AudioManager.instance.Play("CancelUI");
+                AudioManager.instance.Play("CancelUI");
 
+                if (!CharacterSelectionOn) {
                     if (overallMenuIndex > 0) {
                         overallMenuIndex = 0;
 
