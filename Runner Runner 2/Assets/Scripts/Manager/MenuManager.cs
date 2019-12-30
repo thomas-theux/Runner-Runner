@@ -163,38 +163,51 @@ public class MenuManager : MonoBehaviour {
 
         if (!PlayerOneReady) {
             if (interactBtn) {
+
+                // Play right sound when selecting menu item
+                if (overallMenuIndex == 0) {
+                    if (disabledMenus.Contains(CurrentNavIndex)) {
+                        AudioManager.instance.Play("DisabledMenuItem");
+                    } else {
+                        AudioManager.instance.Play("SelectUI");
+                    }
+                } else {
+                    if (overallMenuIndex != 5) {
+                        AudioManager.instance.Play("SelectUI");
+                    }
+                }
+
                 // Disabled Menus are not selectable
                 if (!disabledMenus.Contains(CurrentNavIndex)) {
-                    // Enter/open menu
-                    AudioManager.instance.Play("SelectUI");
-
                     if (overallMenuIndex == 0) {
                         overallMenuIndex = CurrentNavIndex + 1;
 
                         mainNavIndexSaveState = CurrentNavIndex;
 
                         CurrentNavIndex = 0;
+
+                        // Enter/open menu
                         LoadNewMenu();
                     }
                 } else {
                     // Do nothing
-                    AudioManager.instance.Play("SelectUI");
                 }
 
             }
 
             if (cancelBtn) {
-                AudioManager.instance.Play("CancelUI");
+                if (overallMenuIndex > 0) {
+                    AudioManager.instance.Play("CancelUI");
 
-                if (!CharacterSelectionOn) {
-                    if (overallMenuIndex > 0) {
-                        overallMenuIndex = 0;
+                    if (!CharacterSelectionOn) {
+                        if (overallMenuIndex > 0) {
+                            overallMenuIndex = 0;
 
-                        CurrentNavIndex = mainNavIndexSaveState;
-                        LoadNewMenu();
+                            CurrentNavIndex = mainNavIndexSaveState;
+                            LoadNewMenu();
+                        }
                     }
                 }
-
             }
         }
     }

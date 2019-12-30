@@ -193,7 +193,8 @@ public class TimeManager : MonoBehaviour {
 
 
     private void QuitLevel() {
-        AudioManager.instance.Play("EndRunUI");
+        // AudioManager.instance.Play("EndRunUI");
+        AudioManager.instance.Play("CancelUI");
 
         ResetAllVariables();
 

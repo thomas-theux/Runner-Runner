@@ -58,7 +58,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: NewBest
-    clip: {fileID: 8300000, guid: a83ee262003dc4c678bf9dda54283cf2, type: 3}
+    clip: {fileID: 8300000, guid: 3bf73cc646b194eb8a8a1864e2056a8a, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: CancelUI
-    clip: {fileID: 8300000, guid: 1a87efe2b93ee4fd28ca029ba7a0120a, type: 3}
+    clip: {fileID: 8300000, guid: ef7bb121eb8b34d2bacad8786399c310, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -136,7 +136,13 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: ActivateReadyStatus
-    clip: {fileID: 8300000, guid: d5a9f565d8bb54d1eb3d675f4c0fcf5c, type: 3}
+    clip: {fileID: 8300000, guid: 02d427a5df3a04b4284549a3212d6c48, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DisabledMenuItem
+    clip: {fileID: 8300000, guid: 1a87efe2b93ee4fd28ca029ba7a0120a, type: 3}
     volume: 1
     pitch: 1
     loop: 0

@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 64a760b725da2472ab598e50aad40519, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 104a74f9e2b33441ba799db307717344, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1117,16 +1117,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8040033911362793412}
     m_Modifications:
-    - target: {fileID: 6073946306489531957, guid: 7b9f94e919224410f81d195419fda64b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073946306847323367, guid: 7b9f94e919224410f81d195419fda64b,
-        type: 3}
-      propertyPath: m_Name
-      value: PolaroidBG
-      objectReference: {fileID: 0}
     - target: {fileID: 6073946306847323355, guid: 7b9f94e919224410f81d195419fda64b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1232,15 +1222,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6073946306847323364, guid: 7b9f94e919224410f81d195419fda64b,
+    - target: {fileID: 6073946306847323367, guid: 7b9f94e919224410f81d195419fda64b,
         type: 3}
-      propertyPath: m_RenderMode
-      value: 1
+      propertyPath: m_Name
+      value: PolaroidBG
       objectReference: {fileID: 0}
-    - target: {fileID: 6073946306847323364, guid: 7b9f94e919224410f81d195419fda64b,
+    - target: {fileID: 6073946306489531957, guid: 7b9f94e919224410f81d195419fda64b,
         type: 3}
-      propertyPath: m_SortingOrder
-      value: -100
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6073946306847323365, guid: 7b9f94e919224410f81d195419fda64b,
         type: 3}
@@ -1256,6 +1246,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ReferenceResolution.y
       value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073946306847323364, guid: 7b9f94e919224410f81d195419fda64b,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073946306847323364, guid: 7b9f94e919224410f81d195419fda64b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b9f94e919224410f81d195419fda64b, type: 3}

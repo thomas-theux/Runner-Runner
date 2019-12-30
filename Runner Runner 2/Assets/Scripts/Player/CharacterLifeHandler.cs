@@ -40,6 +40,8 @@ public class CharacterLifeHandler : MonoBehaviour {
 
 
     private IEnumerator KillDelay(bool didFinish) {
+        this.playerSheetScript.isDead = true;
+
         yield return new WaitForSeconds(0.1f);
 
         DisableCharacter(didFinish);
@@ -47,7 +49,6 @@ public class CharacterLifeHandler : MonoBehaviour {
 
 
     private void DisableCharacter(bool didFinish) {
-        this.playerSheetScript.isDead = true;
         this.rb.isKinematic = true;
 
         if (!didFinish) {

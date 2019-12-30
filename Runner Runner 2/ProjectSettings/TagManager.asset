@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Character
+  - SphereMask
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Obstacles
   - Ground
   - PP
-  - 
-  - 
+  - Wall
+  - Platform
   - 
   - 
   - 

@@ -24,6 +24,7 @@ public class NameGenerator : MonoBehaviour {
         GetInput();
 
         if (randomizeName) {
+			AudioManager.instance.PlayRandom("NavigateUI", 0.8f, 1.1f);
             RandomizeName();
         }
     }

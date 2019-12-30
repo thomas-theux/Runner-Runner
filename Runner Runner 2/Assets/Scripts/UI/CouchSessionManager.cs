@@ -14,10 +14,14 @@ public class CouchSessionManager : MonoBehaviour {
     public GameObject LevelSetupGO;
     public GameObject CharacterSelectionGO;
 
+    public GameObject ReadyButtonGO;
+    public GameObject StartButtonGO;
+
     private List<int> optionsIndexes = new List<int>();
     private int[] maxOptionsIndexes = {2, 2, 0, 4};
 
     public static int PlayerReadyStatus = 0;
+    private bool showStartButton = false;
 
 	private float maxThreshold = 0.5f;
     private bool axisXActive;
@@ -83,7 +87,7 @@ public class CouchSessionManager : MonoBehaviour {
 
     private List<string> gameModeDescriptionTexts = new List<string>{
         "Sprint from A to B and be the first to win the run.",
-        "Run as many times as you want in the time limit to get the best time."
+        "Run as many times as you want in the given time to get the best score."
     };
 
     // REWIRED
@@ -103,8 +107,10 @@ public class CouchSessionManager : MonoBehaviour {
         couchSessionNavTexts.Add(levelLengthTexts);
         couchSessionNavTexts.Add(levelTimeTexts);
 
+        // Initially set nav indexes to the ones defined in the GameSettings
         for (int i = 0; i < MenuManagerScript.MenuItemsArr.Count; i++) {
-            optionsIndexes.Add(0);
+            if (i == 0) optionsIndexes.Add(GameSettings.SelectedGameMode);
+            else optionsIndexes.Add(0);
         }
 
         GameModeDescription.text = gameModeDescriptionTexts[optionsIndexes[0]];
@@ -114,9 +120,10 @@ public class CouchSessionManager : MonoBehaviour {
     private void OnEnable() {
         MenuManager.CouchSessionMenuOn = true;
 
-        // Reset ALL indexes
+        // Reset ALL indexes to the ones defined in the GameSettings
         for (int i = 0; i < optionsIndexes.Count; i++) {
-            optionsIndexes[i] = 0;
+            if (i == 0) optionsIndexes[i] = GameSettings.SelectedGameMode;
+            else optionsIndexes[i] = 0;
         }
 
         DisplayProperSelectorTitle();
@@ -242,7 +249,28 @@ public class CouchSessionManager : MonoBehaviour {
             }
         }
 
-        // if (PlayerReadyStatus == GameSettings.ConnectedGamepads) {
+        if (PlayerReadyStatus == GameSettings.ConnectedGamepads) {
+
+            // Display the proper start button when all players are ready
+            if (!showStartButton) {
+                showStartButton = true;
+                int showWhichButton = 0;
+
+                switch (GamepadManager.GamepadType) {
+                    case 0:
+                        showWhichButton = 0;
+                        break;
+                    case 1:
+                    case 2:
+                        showWhichButton = 1;
+                        break;
+                }
+
+                ReadyButtonGO.SetActive(false);
+                StartButtonGO.SetActive(true);
+                StartButtonGO.transform.GetChild(showWhichButton).gameObject.SetActive(true);
+            }
+
             if (startButton) {
                 if (MenuManager.CharacterSelectionOn) {
                     AudioManager.instance.Play("StartRunUI");
@@ -268,7 +296,14 @@ public class CouchSessionManager : MonoBehaviour {
                     SceneManager.LoadScene(selectedScene);
                 }
             }
-        // }
+        } else {
+            if(!ReadyButtonGO.activeSelf) {
+                showStartButton = false;
+
+                ReadyButtonGO.SetActive(true);
+                StartButtonGO.SetActive(false);
+            }
+        }
     }
 
 

@@ -10,6 +10,10 @@ public class GamepadManager : MonoBehaviour {
 
 	public Image[] GamepadIcons;
 
+	// Define the gamepad type
+	// 0 = PS4; 1 = XBOX; 2 = anything else
+	public static int GamepadType = 2;
+
 
 	private void OnEnable() {
 		if (MenuManager.MainMenuOn) {
@@ -55,6 +59,19 @@ public class GamepadManager : MonoBehaviour {
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
 		if (GameSettings.ConnectedGamepads < GameSettings.PlayerMax) {
 			GameSettings.ConnectedGamepads = ReInput.controllers.joystickCount;
+
+			// Save the proper gamepad type into an int
+			if (args.controllerId == 0) {
+				switch (args.name) {
+					case "Sony DualShock 4":
+						GamepadType = 0;
+						break;
+					case "Xbox One Controller":
+					case "Xbox 360 Controller":
+						GamepadType = 1;
+						break;
+				}
+			}
 
 			if (MenuManager.MainMenuOn) {
 				UpdateGamepads();
