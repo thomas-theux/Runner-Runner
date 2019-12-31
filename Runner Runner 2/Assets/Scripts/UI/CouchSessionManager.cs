@@ -20,6 +20,9 @@ public class CouchSessionManager : MonoBehaviour {
     private List<int> optionsIndexes = new List<int>();
     private int[] maxOptionsIndexes = {2, 2, 0, 4};
 
+    // DEV: Change this number when adding new maps
+    private int mapCount = 4;
+
     public static int PlayerReadyStatus = 0;
     private bool showStartButton = false;
 
@@ -77,7 +80,8 @@ public class CouchSessionManager : MonoBehaviour {
     private List<string> levelSelectTexts = new List<string>{
         "Left And Right",
         "Any Ways",
-        "Pillars"
+        "Pillars",
+        "Walls'n'such"
     };
 
     private List<string> levelTitleTexts = new List<string>{
@@ -314,8 +318,7 @@ public class CouchSessionManager : MonoBehaviour {
                 couchSessionNavTexts[2] = levelLengthTexts;
                 break;
             case 1:
-                // DEV: Change this number when you add new maps
-                maxOptionsIndexes[2] = 3;
+                maxOptionsIndexes[2] = mapCount;
                 couchSessionNavTexts[2] = levelSelectTexts;
                 break;
         }

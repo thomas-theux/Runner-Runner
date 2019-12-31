@@ -5,7 +5,8 @@ using UnityEngine;
 public class DEVRayCast : MonoBehaviour {
 
     public GameObject target;
-    private int layerMask = 1 << 9;
+    // private int layerMask = 1 << 9;
+    public LayerMask layerMask;
 
     public Material OpaqueWall;
     public Material TransparentWall;
@@ -18,7 +19,7 @@ public class DEVRayCast : MonoBehaviour {
 
     private void Awake() {
         // Collides with all objects except the characters
-        layerMask = ~layerMask;
+        // layerMask = ~layerMask;
 
         // Only collides with objects that have the "Obstacles" tag
         // layerMask = 10;

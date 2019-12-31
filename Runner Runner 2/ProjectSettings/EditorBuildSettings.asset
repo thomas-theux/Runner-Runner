@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameModes/1 Parcours/Pillars.unity
     guid: 29e2be45d836b45ffb1736e7d35b70a2
+  - enabled: 1
+    path: Assets/Scenes/GameModes/1 Parcours/Walls'n'such.unity
+    guid: 2f743e1c7cc5743fa999cb1c2ca0921b
   m_configObjects: {}

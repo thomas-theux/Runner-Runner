@@ -91,7 +91,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3570313819683970139
 Transform:
   m_ObjectHideFlags: 0
@@ -1941,8 +1941,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6020085719847247509}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 24576
   OpaqueWall: {fileID: 0}
-  TransparentWall: {fileID: 0}
+  TransparentWall: {fileID: 2100000, guid: e7c5ddd38abd54d9b9c0a6730f79becd, type: 2}
 --- !u!114 &2299257366319345048
 MonoBehaviour:
   m_ObjectHideFlags: 0
